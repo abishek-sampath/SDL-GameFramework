@@ -70,3 +70,71 @@
 	"CEntity.h"
 	"TextureUtils.h"
 
+1521335185 source:g:\my works\gamedev\sdl\sdl-gameframework\capp.cpp
+	"CApp.h"
+
+1521416273 g:\my works\gamedev\sdl\sdl-gameframework\capp.h
+	<SDL.h>
+	<iostream>
+	<unordered_map>
+	"CEvent.h"
+	"CAnimation.h"
+	"CEntity.h"
+	"ResourceManager.h"
+	"TextureUtils.h"
+	"Definitions.h"
+
+1521331877 g:\my works\gamedev\sdl\sdl-gameframework\cevent.h
+	<SDL.h>
+
+1521333296 g:\my works\gamedev\sdl\sdl-gameframework\canimation.h
+	<SDL.h>
+
+1521413142 g:\my works\gamedev\sdl\sdl-gameframework\centity.h
+	<vector>
+	"CAnimation.h"
+	"ResourceManager.h"
+
+1521342139 g:\my works\gamedev\sdl\sdl-gameframework\resourcemanager.h
+	<SDL2/SDL.h>
+	<SDL.h>
+	<SDL_image.h>
+	<string>
+	<map>
+	<iostream>
+
+1521415069 g:\my works\gamedev\sdl\sdl-gameframework\textureutils.h
+	<SDL.h>
+	"ResourceManager.h"
+
+1521415395 g:\my works\gamedev\sdl\sdl-gameframework\definitions.h
+
+1521416351 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oncleanup.cpp
+	"CApp.h"
+
+1521332042 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onevent.cpp
+	"CApp.h"
+
+1521416051 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oninit.cpp
+	"CApp.h"
+
+1521410766 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onloop.cpp
+	"CApp.h"
+
+1521416125 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onrender.cpp
+	"CApp.h"
+	<string>
+	<iostream>
+
+1521415185 source:g:\my works\gamedev\sdl\sdl-gameframework\centity.cpp
+	"CEntity.h"
+	"TextureUtils.h"
+
+1521331884 source:g:\my works\gamedev\sdl\sdl-gameframework\cevent.cpp
+	"CEvent.h"
+
+1521325224 source:g:\my works\gamedev\sdl\sdl-gameframework\temptest.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+
