@@ -39,6 +39,8 @@
 			<Add library="SDL2_ttf" />
 			<Add library="SDL2_mixer" />
 		</Linker>
+		<Unit filename="CAnimation.cpp" />
+		<Unit filename="CAnimation.h" />
 		<Unit filename="CApp.cpp" />
 		<Unit filename="CApp.h" />
 		<Unit filename="CApp_OnCleanup.cpp" />
@@ -46,8 +48,14 @@
 		<Unit filename="CApp_OnInit.cpp" />
 		<Unit filename="CApp_OnLoop.cpp" />
 		<Unit filename="CApp_OnRender.cpp" />
+		<Unit filename="CEntity.cpp" />
+		<Unit filename="CEntity.h" />
+		<Unit filename="CEvent.cpp" />
+		<Unit filename="CEvent.h" />
+		<Unit filename="Definitions.h" />
 		<Unit filename="ResourceManager.h" />
 		<Unit filename="TempTest.cpp" />
+		<Unit filename="TextureUtils.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
