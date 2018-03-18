@@ -79,7 +79,6 @@ public:
 			// SDL_Log("Adding ", imgFile.c_str(), "to map");
 			SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, img);
 			imageResourceMap.insert(std::pair<std::string, SDL_Texture*>(imgFile, texture));
-			printf("Image loaded and saved!\n");
 			SDL_FreeSurface(img);
 			return texture;
 		}
