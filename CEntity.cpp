@@ -21,7 +21,7 @@ CEntity::~CEntity()
 }
 
 
-bool CEntity::OnLoad(char* file, int width, int height, int maxFrames)
+bool CEntity::OnLoad(const char* file, int width, int height, int maxFrames)
 {
     if((texture = resourceManager->loadImg(file, renderer)) == NULL) {
         return false;
