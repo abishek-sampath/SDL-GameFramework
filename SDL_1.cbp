@@ -53,6 +53,14 @@
 		<Unit filename="CEvent.cpp" />
 		<Unit filename="CEvent.h" />
 		<Unit filename="Definitions.h" />
+		<Unit filename="GArea.cpp" />
+		<Unit filename="GArea.h" />
+		<Unit filename="GCamera.cpp" />
+		<Unit filename="GCamera.h" />
+		<Unit filename="GMap.cpp" />
+		<Unit filename="GMap.h" />
+		<Unit filename="GTile.cpp" />
+		<Unit filename="GTile.h" />
 		<Unit filename="ResourceManager.h" />
 		<Unit filename="TempTest.cpp" />
 		<Unit filename="TextureUtils.h" />
