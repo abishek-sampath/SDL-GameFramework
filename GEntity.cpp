@@ -1,10 +1,10 @@
-#include "CEntity.h"
+#include "GEntity.h"
 #include "TextureUtils.h"
 
 
-std::vector<CEntity*> CEntity::entityList;
+std::vector<GEntity*> GEntity::entityList;
 
-CEntity::CEntity(SDL_Renderer* renderer, ResourceManager* resourceManager)
+GEntity::GEntity(SDL_Renderer* renderer, ResourceManager* resourceManager)
 {
     this->renderer = renderer;
     this->resourceManager = resourceManager;
@@ -15,13 +15,13 @@ CEntity::CEntity(SDL_Renderer* renderer, ResourceManager* resourceManager)
 }
 
 
-CEntity::~CEntity()
+GEntity::~GEntity()
 {
 
 }
 
 
-bool CEntity::OnLoad(const char* file, int width, int height, int maxFrames)
+bool GEntity::OnLoad(const char* file, int width, int height, int maxFrames)
 {
     if((texture = resourceManager->loadImg(file, renderer)) == NULL) {
         return false;
@@ -35,13 +35,13 @@ bool CEntity::OnLoad(const char* file, int width, int height, int maxFrames)
 }
 
 
-void CEntity::OnLoop()
+void GEntity::OnLoop()
 {
     Anim_Control.OnAnimate();
 }
 
 
-void CEntity::OnRender()
+void GEntity::OnRender()
 {
     if(texture == NULL) {
         return;
@@ -53,7 +53,7 @@ void CEntity::OnRender()
 }
 
 
-void CEntity::OnRender(bool isVertical)
+void GEntity::OnRender(bool isVertical)
 {
     if(texture == NULL)
     {
@@ -72,7 +72,7 @@ void CEntity::OnRender(bool isVertical)
 }
 
 
-void CEntity::OnRender(std::vector<SDL_Rect> &textureRects)
+void GEntity::OnRender(std::vector<SDL_Rect> &textureRects)
 {
     if(texture == NULL)
     {
@@ -96,7 +96,7 @@ void CEntity::OnRender(std::vector<SDL_Rect> &textureRects)
 }
 
 
-void CEntity::OnCleanup()
+void GEntity::OnCleanup()
 {
     texture = NULL;
     renderer = NULL;

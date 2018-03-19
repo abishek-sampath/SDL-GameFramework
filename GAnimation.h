@@ -1,5 +1,5 @@
-#ifndef CANIMATION_H_INCLUDED
-#define CANIMATION_H_INCLUDED
+#ifndef GANIMATION_H_INCLUDED
+#define GANIMATION_H_INCLUDED
 
 #include <SDL.h>
 
@@ -28,4 +28,4 @@ public:
 };
 
 
-#endif // CANIMATION_H_INCLUDED
+#endif // GANIMATION_H_INCLUDED

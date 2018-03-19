@@ -1,6 +1,6 @@
-#include "CAnimation.h"
+#include "GAnimation.h"
 
-CAnimation::CAnimation()
+GAnimation::GAnimation()
 {
     currentFrame = 0;
     maxFrames    = 0;
@@ -11,7 +11,7 @@ CAnimation::CAnimation()
 }
 
 
-void CAnimation::OnAnimate()
+void GAnimation::OnAnimate()
 {
     if((oldTime + frameRate) > SDL_GetTicks()) {
         return;
@@ -40,13 +40,13 @@ void CAnimation::OnAnimate()
 }
 
 
-void CAnimation::SetFrameRate(int rate)
+void GAnimation::SetFrameRate(int rate)
 {
     frameRate = rate;
 }
 
 
-void CAnimation::SetCurrentFrame(int frame)
+void GAnimation::SetCurrentFrame(int frame)
 {
     if(frame < 0 || frame >= maxFrames)
         return;
@@ -55,7 +55,7 @@ void CAnimation::SetCurrentFrame(int frame)
 }
 
 
-int CAnimation::GetCurrentFrame()
+int GAnimation::GetCurrentFrame()
 {
     return currentFrame;
 }

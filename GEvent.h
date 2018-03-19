@@ -1,13 +1,13 @@
-#ifndef CEVENT_H_INCLUDED
-#define CEVENT_H_INCLUDED
+#ifndef GEVENT_H_INCLUDED
+#define GEVENT_H_INCLUDED
 
 #include <SDL.h>
 
-class CEvent {
+class GEvent {
     public:
-        CEvent();
+        GEvent();
 
-        virtual ~CEvent();
+        virtual ~GEvent();
 
         virtual void OnEvent(SDL_Event* event);
 
@@ -62,4 +62,4 @@ class CEvent {
         virtual void OnUser(Uint8 type, int code, void* data1, void* data2);
 };
 
-#endif // CEVENT_H_INCLUDED
+#endif // GEVENT_H_INCLUDED
