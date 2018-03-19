@@ -32,7 +32,7 @@ public:
     virtual ~CEntity();
 
 public:
-    virtual bool OnLoad(char* file, int width, int height, int maxFrames);
+    virtual bool OnLoad(const char* file, int width, int height, int maxFrames);
     virtual void OnLoop();
     virtual void OnCleanup();
     // render methods
