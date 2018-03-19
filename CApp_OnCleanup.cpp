@@ -12,12 +12,12 @@ void CApp::OnCleanup()
     resourceManager->clearResource();
 
     // cleanup entities
-    for(unsigned int i=0; i < CEntity::entityList.size(); i++) {
-        if(!CEntity::entityList[i])
+    for(unsigned int i=0; i < GEntity::entityList.size(); i++) {
+        if(!GEntity::entityList[i])
             continue;
-        CEntity::entityList[i]->OnCleanup();
+        GEntity::entityList[i]->OnCleanup();
     }
-    CEntity::entityList.clear();
+    GEntity::entityList.clear();
 
     // cleanup SDL resources
     SDL_DestroyRenderer(renderer);

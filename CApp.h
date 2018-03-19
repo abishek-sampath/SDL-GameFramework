@@ -5,9 +5,9 @@
 #include <iostream>
 #include <unordered_map>
 
-#include "CEvent.h"
+#include "GEvent.h"
 #include "CAnimation.h"
-#include "CEntity.h"
+#include "GEntity.h"
 #include "GArea.h"
 #include "GCamera.h"
 
@@ -16,14 +16,14 @@
 #include "Definitions.h"
 
 
-class CApp : public CEvent {
+class CApp : public GEvent {
 private:
     bool running;
     SDL_Window* window;
     SDL_Renderer* renderer;
 
-    CEntity*    Entity1 = NULL;
-    CEntity*    Entity2 = NULL;
+    GEntity*    Entity1 = NULL;
+    GEntity*    Entity2 = NULL;
 
 private:
     ResourceManager* resourceManager;

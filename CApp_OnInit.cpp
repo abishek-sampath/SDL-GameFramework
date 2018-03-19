@@ -83,8 +83,8 @@ bool CApp::OnInit()
 //    texRectsMap[2] = anim_2_frames;
 
     // Initialize Entities
-//    Entity1 = new CEntity(renderer, resourceManager);
-//    Entity2 = new CEntity(renderer, resourceManager);
+//    Entity1 = new GEntity(renderer, resourceManager);
+//    Entity2 = new GEntity(renderer, resourceManager);
 //    if (Entity1->OnLoad(SPRITESHEET2,
 //                        ANIM_2_TEX_W, ANIM_2_TEX_H,
 //                        anim_1_frames.size()) == false)
@@ -100,8 +100,8 @@ bool CApp::OnInit()
 //        return false;
 //    }
 //    Entity2->X = 200;
-//    CEntity::entityList.push_back(Entity1);
-//    CEntity::entityList.push_back(Entity2);
+//    GEntity::entityList.push_back(Entity1);
+//    GEntity::entityList.push_back(Entity2);
 
 
 

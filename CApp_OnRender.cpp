@@ -4,10 +4,10 @@
 
 void CApp::OnRender()
 {
-//    for(unsigned int i=0; i < CEntity::entityList.size(); i++) {
-//        if(!CEntity::entityList[i])
+//    for(unsigned int i=0; i < GEntity::entityList.size(); i++) {
+//        if(!GEntity::entityList[i])
 //            continue;
-//        CEntity::entityList[i]->OnRender(texRectsMap[i+1]);
+//        GEntity::entityList[i]->OnRender(texRectsMap[i+1]);
 //    }
 
     GArea::AreaControl.OnRender(GCamera::CameraControl.GetX(),
