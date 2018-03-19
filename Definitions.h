@@ -2,8 +2,8 @@
 #define DEFINITIONS_H_INCLUDED
 
 // window
-#define SCREEN_WIDTH    800
-#define SCREEN_HEIGHT   600
+#define SCREEN_WIDTH    640
+#define SCREEN_HEIGHT   480
 #define TITLE           "SDL Trials"
 
 
@@ -13,10 +13,15 @@
 #define ANIM_1_TEX_H    64
 #define ANIM_1_FRAMES   8
 const bool IS_ANIM_1_VERT = true;
-#define SPRITESHEET2     "images/capguy-walk.png"
-#define ANIM_2_TEX_W        75
-#define ANIM_2_TEX_H        132
+#define SPRITESHEET2    "images/capguy-walk.png"
+#define ANIM_2_TEX_W    75
+#define ANIM_2_TEX_H    132
 #define ANIM_2_FRAMES   8
 const bool IS_ANIM_2_VERT = false;
+
+// Areas, Maps and Tiles
+#define MAP_WIDTH   40
+#define MAP_HEIGHT  40
+#define TILE_SIZE   16
 
 #endif // DEFINITIONS_H_INCLUDED
