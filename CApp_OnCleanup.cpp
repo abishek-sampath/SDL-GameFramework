@@ -2,9 +2,11 @@
 
 void CApp::OnCleanup()
 {
-    for(auto&& textRects : texRectsMap) {
-        textRects.second.clear();
-    }
+//    for(auto&& textRects : texRectsMap) {
+//        textRects.second.clear();
+//    }
+
+    GArea::AreaControl.OnCleanup();
 
     // cleanup resource manager
     resourceManager->clearResource();
