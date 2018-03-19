@@ -38,6 +38,7 @@ public:
 		}
 		// if not, load it and add it
 		else {
+            std::cout << "Loading Image : " << imgFile << "\n";
 			SDL_Surface* img = IMG_Load(imgFile.c_str());
 			if (img == NULL) {
                 printf("Failed to allocate surface\n");
@@ -47,7 +48,6 @@ public:
 			// SDL_Log("Adding ", imgFile.c_str(), "to map");
 			SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, img);
 			imageResourceMap.insert(std::pair<std::string, SDL_Texture*>(imgFile, texture));
-			printf("Image loaded and saved!\n");
 			SDL_FreeSurface(img);
 			return texture;
 		}
