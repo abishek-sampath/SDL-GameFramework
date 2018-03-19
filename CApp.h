@@ -8,13 +8,15 @@
 #include "CEvent.h"
 #include "CAnimation.h"
 #include "CEntity.h"
+#include "GArea.h"
+#include "GCamera.h"
 
 #include "ResourceManager.h"
 #include "TextureUtils.h"
 #include "Definitions.h"
 
 
-class CApp {
+class CApp : public CEvent {
 private:
     bool running;
     SDL_Window* window;
@@ -24,7 +26,6 @@ private:
     CEntity*    Entity2 = NULL;
 
 private:
-    CEvent* eventHandler;
     ResourceManager* resourceManager;
     std::unordered_map<int, std::vector<SDL_Rect>> texRectsMap;
 
@@ -38,6 +39,10 @@ public:
     void OnLoop();
     void OnRender();
     void OnCleanup();
+
+public:
+    void OnKeyDown(SDL_Keycode &sym, Uint16 &mod);
+    void OnExit();
 };
 
 #endif // CAPP_H_INCLUDED

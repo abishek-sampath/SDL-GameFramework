@@ -10,7 +10,6 @@ CApp::CApp() {
 
     // User Resources
     resourceManager = NULL;
-    eventHandler = NULL;
 
     running = true;
 }
