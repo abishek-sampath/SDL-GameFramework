@@ -2,8 +2,8 @@
 #define DEFINITIONS_H_INCLUDED
 
 // window
-#define SCREEN_WIDTH    640
-#define SCREEN_HEIGHT   480
+#define SCREEN_WIDTH    960
+#define SCREEN_HEIGHT   720
 #define TITLE           "SDL Trials"
 
 
@@ -20,6 +20,7 @@ const bool IS_ANIM_1_VERT = true;
 const bool IS_ANIM_2_VERT = false;
 
 // Areas, Maps and Tiles
+#define AREA_1      "./areas/1.area"
 #define MAP_WIDTH   40
 #define MAP_HEIGHT  40
 #define TILE_SIZE   16
