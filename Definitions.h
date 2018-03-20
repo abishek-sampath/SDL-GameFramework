@@ -1,3 +1,5 @@
+#include <iostream>
+
 #ifndef DEFINITIONS_H_INCLUDED
 #define DEFINITIONS_H_INCLUDED
 
@@ -8,7 +10,7 @@
 
 
 // images
-#define SPRITESHEET     "images/yoshi.png"
+#define SPRITESHEET     "images/tilesets/yoshi.png"
 #define ANIM_1_TEX_W    64
 #define ANIM_1_TEX_H    64
 #define ANIM_1_FRAMES   8

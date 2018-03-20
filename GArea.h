@@ -22,6 +22,10 @@ public:
     bool OnLoad(const char* file);
     void OnRender(int cameraX, int cameraY);
     void OnCleanup();
+
+public:
+    GMap*   GetMap(int X, int Y);
+    GTile*  GetTile(int X, int Y);
 };
 
 #endif // GAREA_H_INCLUDED

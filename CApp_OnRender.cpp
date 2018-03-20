@@ -4,14 +4,14 @@
 
 void CApp::OnRender()
 {
-//    for(unsigned int i=0; i < GEntity::EntityList.size(); i++) {
-//        if(!GEntity::EntityList[i])
-//            continue;
-//        GEntity::EntityList[i]->OnRender(texRectsMap[i+1]);
-//    }
+    GArea::AreaControl.OnRender(-GCamera::CameraControl.GetX(),
+                                -GCamera::CameraControl.GetY());
 
-    GArea::AreaControl.OnRender(GCamera::CameraControl.GetX(),
-                                GCamera::CameraControl.GetY());
+    for(unsigned int i=0; i < GEntity::EntityList.size(); i++) {
+        if(!GEntity::EntityList[i])
+            continue;
+        GEntity::EntityList[i]->OnRender(true);
+    }
 
     SDL_RenderPresent(renderer);
 }

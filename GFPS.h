@@ -17,7 +17,7 @@ private:
 
 public:
     GFPS();
-    void OnLoop;
+    void OnLoop();
     int GetFPS();
     float GetSpeedFactor();
 };

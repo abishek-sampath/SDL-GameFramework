@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 
-class CAnimation
+class GAnimation
 {
 private:
     int currentFrame;
@@ -18,7 +18,7 @@ public:
     bool oscillate;
 
 public:
-    CAnimation();
+    GAnimation();
     void OnAnimate();
 
 public:

@@ -6,10 +6,12 @@
 #include <unordered_map>
 
 #include "GEvent.h"
-#include "CAnimation.h"
+#include "GAnimation.h"
 #include "GEntity.h"
 #include "GArea.h"
 #include "GCamera.h"
+
+#include "PlayerEntity.h"
 
 #include "ResourceManager.h"
 #include "TextureUtils.h"
@@ -22,8 +24,8 @@ private:
     SDL_Window* window;
     SDL_Renderer* renderer;
 
-    GEntity*    Entity1 = NULL;
-    GEntity*    Entity2 = NULL;
+    PlayerEntity* player1;
+    PlayerEntity* player2;
 
 private:
     ResourceManager* resourceManager;
@@ -41,8 +43,9 @@ public:
     void OnCleanup();
 
 public:
-    void OnKeyDown(SDL_Keycode &sym, Uint16 &mod);
     void OnExit();
+    void OnKeyDown(SDL_Keycode &sym, Uint16 &mod);
+    void OnKeyUp(SDL_Keycode &sym, Uint16 &mod);
 };
 
 #endif // CAPP_H_INCLUDED

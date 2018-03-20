@@ -26,13 +26,13 @@ void GFPS::OnLoop()
 }
 
 
-void GFPS::GetFPS()
+int GFPS::GetFPS()
 {
     return numFrames;
 }
 
 
-void GFPS::GetSpeedFactor()
+float GFPS::GetSpeedFactor()
 {
     return speedFactor;
 }

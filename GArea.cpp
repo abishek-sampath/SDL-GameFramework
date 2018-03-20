@@ -77,3 +77,36 @@ void GArea::OnCleanup()
 {
     mapList.clear();
 }
+
+
+GMap* GArea::GetMap(int X, int Y)
+{
+    int mapWidth    = MAP_WIDTH * TILE_SIZE;
+    int mapHeight   = MAP_HEIGHT * TILE_SIZE;
+
+    int ID = X / mapWidth;
+    ID = ID + ((Y / mapHeight) * areaSize);
+
+    if(ID < 0 || ID >= mapList.size()) {
+        return NULL;
+    }
+
+    return &mapList[ID];
+}
+
+
+
+GTile* GArea::GetTile(int X, int Y)
+{
+    int mapWidth    = MAP_WIDTH * TILE_SIZE;
+    int mapHeight   = MAP_HEIGHT * TILE_SIZE;
+
+    GMap* gmap = GetMap(X, Y);
+    if(gmap == NULL)
+        return NULL;
+
+    X = X % mapWidth;
+    Y = Y % mapHeight;
+
+    return gmap->GetTile(X, Y);
+}

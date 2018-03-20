@@ -23,10 +23,11 @@ private:
 
 public:
     GMap(SDL_Renderer* renderer, ResourceManager* resourceManager);
-
-public:
     bool OnLoad(char* file);
     void OnRender(int mapX, int mapY);
+
+public:
+    GTile* GetTile(int X, int Y);
 };
 
 #endif // GMAP_H_INCLUDED

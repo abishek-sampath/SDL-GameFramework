@@ -27,11 +27,11 @@ enum
 class GEntity
 {
 public:
-    static std::vector<GEntity*> entityList;
+    static std::vector<GEntity*> EntityList;
 
 protected:
-    GAnimation Anim_Control;
-    SDL_Texture* texture = NULL;
+    GAnimation AnimControl;
+    SDL_Texture* texture;
     SDL_Renderer* renderer = NULL;
     ResourceManager* resourceManager = NULL;
 
@@ -41,12 +41,14 @@ public:
     int     width;
     int     height;
     //int     animState;
+
+public:
+    int flags;
     bool moveLeft;
     bool moveRight;
 
 public:
     int type;
-    int flags;
     bool dead;
     float maxSpeedX;
     float maxSpeedY;
@@ -58,6 +60,10 @@ protected:
     float accelY;
     int currentFrameCol;
     int currentFrameRow;
+    int collisionX;
+    int collisionY;
+    int collisionWidth;
+    int collisionHeight;
 
 public:
     GEntity(SDL_Renderer* renderer, ResourceManager* resourceManager);
@@ -67,10 +73,37 @@ public:
     virtual bool OnLoad(const char* file, int width, int height, int maxFrames);
     virtual void OnLoop();
     virtual void OnCleanup();
+    virtual void OnAnimate();
+    virtual void OnCollision(GEntity* entity);
     // render methods
     virtual void OnRender();    // normal render with texture-rect x=0, y=0
     virtual void OnRender(bool isVertical); // render with texture-rect x and y in horizontal or vertical orders respectively
     virtual void OnRender(std::vector<SDL_Rect> &textureRects); // rencer with texture-rects from the array
+
+public:
+    void OnMove(float moveX, float moveY);
+    void StopMove();
+
+public:
+    bool Collides(int oX, int oY, int oW, int oH);
+    bool PosValid(int newX, int newY);
+    bool PosValidTile(GTile* tile);
+    bool PosValidEntity(GEntity* entity, int newX, int newY);
+};
+
+
+
+class GEntityCollision
+{
+public:
+    static std::vector<GEntityCollision> EntityCollisonList;
+
+public:
+    GEntity* entityA;
+    GEntity* entityB;
+
+public:
+    GEntityCollision();
 };
 
 #endif // CENTITY_H_INCLUDED

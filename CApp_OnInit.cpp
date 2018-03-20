@@ -41,7 +41,26 @@ bool CApp::OnInit()
         return false;
     }
 
-
+    // Initialize players
+    player1 = new PlayerEntity(renderer, resourceManager);
+    player2 = new PlayerEntity(renderer, resourceManager);
+    if(player1->OnLoad(SPRITESHEET,
+                       ANIM_1_TEX_W, ANIM_1_TEX_H,
+                       ANIM_1_FRAMES) == false) {
+                        return false;
+                       }
+    if(player2->OnLoad(SPRITESHEET,
+                       ANIM_1_TEX_W, ANIM_1_TEX_H,
+                       ANIM_1_FRAMES) == false) {
+                        return false;
+                       }
+    player1->X = 700;
+    player2->X = 100;
+    player1->flags = player1->flags | ENTITY_FLAG_MAPONLY;
+    GEntity::EntityList.push_back(player1);
+    GEntity::EntityList.push_back(player2);
+    GCamera::CameraControl.targetMode = TARGET_MODE_CENTER;
+    GCamera::CameraControl.SetTarget(&player1->X, &player1->Y);
 
 
     //TEMP SDL RECT FRAMES
