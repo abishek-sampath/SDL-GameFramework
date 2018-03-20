@@ -4,15 +4,6 @@
 
 std::vector<GEntity*>  GEntity::EntityList;
 
-std::vector<GEntityCollision>  GEntityCollision::EntityCollisonList;
-
-
-GEntityCollision::GEntityCollision()
-{
-    entityA = NULL;
-    entityB = NULL;
-}
-
 
 GEntity::GEntity(SDL_Renderer* renderer, ResourceManager* resourceManager)
 {
@@ -30,12 +21,14 @@ GEntity::GEntity(SDL_Renderer* renderer, ResourceManager* resourceManager)
 
     speedX = speedY = 0;
     accelX = accelY = 0;
-    maxSpeedX = maxSpeedY = 5;
+    maxSpeedX = maxSpeedY = 10;
 
     currentFrameCol = currentFrameRow = 0;
 
     collisionX = collisionY = 0;
     collisionWidth = collisionHeight = 0;
+
+    canJump = false;
 }
 
 
@@ -177,7 +170,7 @@ void GEntity::OnAnimate()
 
 
 // to be implemented in an overridden class
-void GEntity::OnCollision(GEntity* entity)
+bool GEntity::OnCollision(GEntity* entity)
 {
 
 }
@@ -185,6 +178,7 @@ void GEntity::OnCollision(GEntity* entity)
 
 void GEntity::OnMove(float moveX, float moveY)
 {
+    canJump = false;
     if(moveX == 0 && moveY == 0) {
         return;
     }
@@ -227,6 +221,9 @@ void GEntity::OnMove(float moveX, float moveY)
                 Y += newY;
             }
             else {
+                if(moveY > 0) {
+                    canJump = true;
+                }
                 speedY = 0;
             }
         }
@@ -361,4 +358,15 @@ bool GEntity::PosValidEntity(GEntity* entity, int newX, int newY)
             }
 
             return true;
+}
+
+
+
+bool GEntity::Jump()
+{
+    if(canJump == false)
+        return false;
+
+    speedY = -maxSpeedY;
+    return true;
 }

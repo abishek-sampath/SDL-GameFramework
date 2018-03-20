@@ -55,7 +55,8 @@ void PlayerEntity::OnAnimate()
 }
 
 
-void PlayerEntity::OnCollision(GEntity* entity)
+bool PlayerEntity::OnCollision(GEntity* entity)
 {
-
+    Jump();
+    return true;
 }

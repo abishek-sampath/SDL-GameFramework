@@ -11,7 +11,7 @@ public:
     void OnLoop();
     void OnCleanup();
     void OnAnimate();
-    void OnCollision(GEntity* entity);
+    bool OnCollision(GEntity* entity);
     // different render options
     void OnRender();
     void OnRender(bool isVertical);

@@ -64,6 +64,7 @@ protected:
     int collisionY;
     int collisionWidth;
     int collisionHeight;
+    bool canJump;
 
 public:
     GEntity(SDL_Renderer* renderer, ResourceManager* resourceManager);
@@ -74,7 +75,7 @@ public:
     virtual void OnLoop();
     virtual void OnCleanup();
     virtual void OnAnimate();
-    virtual void OnCollision(GEntity* entity);
+    virtual bool OnCollision(GEntity* entity);
     // render methods
     virtual void OnRender();    // normal render with texture-rect x=0, y=0
     virtual void OnRender(bool isVertical); // render with texture-rect x and y in horizontal or vertical orders respectively
@@ -83,6 +84,7 @@ public:
 public:
     void OnMove(float moveX, float moveY);
     void StopMove();
+    bool Jump();
 
 public:
     bool Collides(int oX, int oY, int oW, int oH);

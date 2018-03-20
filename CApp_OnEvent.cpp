@@ -24,7 +24,10 @@ void CApp::OnKeyDown(SDL_Keycode &sym, Uint16 &mod)
         player1->moveRight = true;
         break;
     case SDLK_LSHIFT:
-        player1->maxSpeedX = 15;
+        player1->maxSpeedX = 20;
+        break;
+    case SDLK_SPACE:
+        player1->Jump();
         break;
     default: {}
     }
@@ -42,7 +45,7 @@ void CApp::OnKeyUp(SDL_Keycode &sym, Uint16 &mod)
         player1->moveRight = false;
         break;
     case SDLK_LSHIFT:
-        player1->maxSpeedX = 5;
+        player1->maxSpeedX = 10;
         break;
     default:{}
     }
