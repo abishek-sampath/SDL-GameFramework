@@ -63,6 +63,8 @@
 		<Unit filename="GMap.h" />
 		<Unit filename="GTile.cpp" />
 		<Unit filename="GTile.h" />
+		<Unit filename="PlayerEntity.cpp" />
+		<Unit filename="PlayerEntity.h" />
 		<Unit filename="ResourceManager.h" />
 		<Unit filename="TempTest.cpp" />
 		<Unit filename="TextureUtils.h" />
