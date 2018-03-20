@@ -100,8 +100,8 @@ bool CApp::OnInit()
 //        return false;
 //    }
 //    Entity2->X = 200;
-//    GEntity::entityList.push_back(Entity1);
-//    GEntity::entityList.push_back(Entity2);
+//    GEntity::EntityList.push_back(Entity1);
+//    GEntity::EntityList.push_back(Entity2);
 
 
 

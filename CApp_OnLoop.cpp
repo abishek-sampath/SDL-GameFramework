@@ -7,10 +7,10 @@ void CApp::OnLoop()
     // clear renderer foe next loop
     SDL_RenderClear(renderer);
 
-    for(unsigned int i=0; i < GEntity::entityList.size(); i++) {
-        if(!GEntity::entityList[i])
+    for(unsigned int i=0; i < GEntity::EntityList.size(); i++) {
+        if(!GEntity::EntityList[i])
             continue;
-        GEntity::entityList[i]->OnLoop();
+        GEntity::EntityList[i]->OnLoop();
     }
 }
 
