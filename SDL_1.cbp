@@ -39,8 +39,6 @@
 			<Add library="SDL2_ttf" />
 			<Add library="SDL2_mixer" />
 		</Linker>
-		<Unit filename="CAnimation.cpp" />
-		<Unit filename="CAnimation.h" />
 		<Unit filename="CApp.cpp" />
 		<Unit filename="CApp.h" />
 		<Unit filename="CApp_OnCleanup.cpp" />
@@ -48,15 +46,19 @@
 		<Unit filename="CApp_OnInit.cpp" />
 		<Unit filename="CApp_OnLoop.cpp" />
 		<Unit filename="CApp_OnRender.cpp" />
-		<Unit filename="CEntity.cpp" />
-		<Unit filename="CEntity.h" />
-		<Unit filename="CEvent.cpp" />
-		<Unit filename="CEvent.h" />
 		<Unit filename="Definitions.h" />
+		<Unit filename="GAnimation.cpp" />
+		<Unit filename="GAnimation.h" />
 		<Unit filename="GArea.cpp" />
 		<Unit filename="GArea.h" />
 		<Unit filename="GCamera.cpp" />
 		<Unit filename="GCamera.h" />
+		<Unit filename="GEntity.cpp" />
+		<Unit filename="GEntity.h" />
+		<Unit filename="GEvent.cpp" />
+		<Unit filename="GEvent.h" />
+		<Unit filename="GFPS.cpp" />
+		<Unit filename="GFPS.h" />
 		<Unit filename="GMap.cpp" />
 		<Unit filename="GMap.h" />
 		<Unit filename="GTile.cpp" />
