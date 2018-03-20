@@ -49,7 +49,7 @@ void GCamera::SetPos(int X, int Y)
 }
 
 
-void GCamera::SetTarget(int* X, int* Y)
+void GCamera::SetTarget(float* X, float* Y)
 {
     targetX = X;
     targetY = Y;

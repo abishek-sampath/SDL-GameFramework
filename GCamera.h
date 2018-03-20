@@ -19,8 +19,8 @@ public:
 private:
     int x;
     int y;
-    int* targetX;
-    int* targetY;
+    float* targetX;
+    float* targetY;
 
 public:
     int targetMode;
@@ -31,7 +31,7 @@ public:
     int GetX();
     int GetY();
     void SetPos(int X, int Y);
-    void SetTarget(int* X, int* Y);
+    void SetTarget(float* X, float* Y);
 };
 
 #endif // GCAMERA_H_INCLUDED

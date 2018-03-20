@@ -17,21 +17,34 @@ void CApp::OnKeyDown(SDL_Keycode &sym, Uint16 &mod)
 {
     switch(sym)
     {
-//    case SDLK_UP:
-//        GCamera::CameraControl.OnMove(0, 10);
-//        break;
-//    case SDLK_DOWN:
-//        GCamera::CameraControl.OnMove(0, -10);
-//        break;
-//    case SDLK_LEFT:
-//        GCamera::CameraControl.OnMove(10, 0);
-//        break;
-//    case SDLK_RIGHT:
-//        GCamera::CameraControl.OnMove(-10, 0);
-//        break;
-    default: {
+    case SDLK_LEFT:
+        player1->moveLeft = true;
+        break;
+    case SDLK_RIGHT:
+        player1->moveRight = true;
+        break;
+    case SDLK_LSHIFT:
+        player1->maxSpeedX = 15;
+        break;
+    default: {}
+    }
+}
 
-        }
+
+void CApp::OnKeyUp(SDL_Keycode &sym, Uint16 &mod)
+{
+    switch(sym)
+    {
+    case SDLK_LEFT:
+        player1->moveLeft = false;
+        break;
+    case SDLK_RIGHT:
+        player1->moveRight = false;
+        break;
+    case SDLK_LSHIFT:
+        player1->maxSpeedX = 5;
+        break;
+    default:{}
     }
 }
 

@@ -12,6 +12,12 @@ void CApp::OnLoop()
             continue;
         GEntity::EntityList[i]->OnLoop();
     }
+
+    GFPS::FPSControl.OnLoop();
+
+    char buffer[255];
+    sprintf(buffer, "%d", GFPS::FPSControl.GetFPS());
+    SDL_SetWindowTitle(window, buffer);
 }
 
 
