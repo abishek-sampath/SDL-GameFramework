@@ -15,6 +15,8 @@ GEntity::GEntity(SDL_Renderer* renderer, ResourceManager* resourceManager)
     width = height = 0;
     moveLeft = moveRight = false;
 
+    textureWidth = textureHeight = false;
+
     type = ENTITY_TYPE_GENERIC;
     dead = false;
     flags = ENTITY_FLAG_GRAVITY;
@@ -38,7 +40,7 @@ GEntity::~GEntity()
 }
 
 
-bool GEntity::OnLoad(const char* file, int width, int height, int maxFrames)
+bool GEntity::OnLoad(const char* file, int width, int height, int textureWidth, int textureHeight, int maxFrames)
 {
     if((texture = resourceManager->loadImg(file, renderer)) == NULL) {
         return false;
@@ -46,6 +48,10 @@ bool GEntity::OnLoad(const char* file, int width, int height, int maxFrames)
 
     this->width = width;
     this->height = height;
+
+    this->textureWidth  = textureWidth;
+    this->textureHeight = textureHeight;
+
     AnimControl.maxFrames = maxFrames;
 
     return true;
@@ -57,17 +63,12 @@ void GEntity::OnLoop()
     // not moving
     if(moveLeft == false && moveRight == false) {
         StopMove();
-        // ** -->check this if doesnt work
-//        if(speedX == 0 && speedY == 0) {
-//            return;
-//        }
     }
 
     if(moveLeft) {
         accelX = -0.25;
     }
-
-    if(moveRight) {
+    else if(moveRight) {
         accelX = 0.25;
     }
 
@@ -78,7 +79,6 @@ void GEntity::OnLoop()
     speedX += accelX * GFPS::FPSControl.GetSpeedFactor();
     speedY += accelY * GFPS::FPSControl.GetSpeedFactor();
 
-    //std::cout << "MAXSPEED : " << maxSpeedX << "\n";
     if(speedX > maxSpeedX)
         speedX = maxSpeedX;
     if(speedX < -maxSpeedX)
@@ -100,8 +100,9 @@ void GEntity::OnRender()
     }
     TextureUtils::OnDraw(texture, renderer,
            X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
+           width, height,
            0, 0,
-           width, height);
+           textureWidth, textureHeight);
 }
 
 
@@ -114,13 +115,15 @@ void GEntity::OnRender(bool isVertical)
     if(isVertical)
         TextureUtils::OnDraw(texture, renderer,
                              X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
-                             currentFrameCol * width, (currentFrameRow + AnimControl.GetCurrentFrame()) * height,
-                             width, height);
+                             width, height,
+                             currentFrameCol * textureWidth, (currentFrameRow + AnimControl.GetCurrentFrame()) * textureHeight,
+                             textureWidth, textureHeight);
     else
         TextureUtils::OnDraw(texture, renderer,
                              X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
-                             (currentFrameRow + AnimControl.GetCurrentFrame()) * width, currentFrameCol * height,
-                             width, height);
+                             width, height,
+                             (currentFrameRow + AnimControl.GetCurrentFrame()) * textureWidth, currentFrameCol * textureHeight,
+                             textureWidth, textureHeight);
 }
 
 
@@ -142,8 +145,9 @@ void GEntity::OnRender(std::vector<SDL_Rect> &textureRects)
     {
         TextureUtils::OnDraw(texture, renderer,
                              X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
+                             width, height,
                              0, 0,
-                             width, height);
+                             textureWidth, textureHeight);
     }
 }
 
@@ -172,13 +176,12 @@ void GEntity::OnAnimate()
 // to be implemented in an overridden class
 bool GEntity::OnCollision(GEntity* entity)
 {
-
+    return true;
 }
 
 
 void GEntity::OnMove(float moveX, float moveY)
 {
-    canJump = false;
     if(moveX == 0 && moveY == 0) {
         return;
     }
@@ -186,18 +189,20 @@ void GEntity::OnMove(float moveX, float moveY)
     double newX = 0;
     double newY = 0;
 
+    canJump = false;
+
     moveX *= GFPS::FPSControl.GetSpeedFactor();
     moveY *= GFPS::FPSControl.GetSpeedFactor();
 
     if(moveX != 0) {
-        if(moveX > 0)
+        if(moveX >= 0)
             newX = GFPS::FPSControl.GetSpeedFactor();
         else
             newX = -GFPS::FPSControl.GetSpeedFactor();
     }
 
     if(moveY != 0) {
-        if(moveY > 0)
+        if(moveY >= 0)
             newY = GFPS::FPSControl.GetSpeedFactor();
         else
             newY = -GFPS::FPSControl.GetSpeedFactor();
@@ -225,6 +230,7 @@ void GEntity::OnMove(float moveX, float moveY)
                     canJump = true;
                 }
                 speedY = 0;
+                moveY = 0;
             }
         }
 
@@ -278,17 +284,17 @@ bool GEntity::Collides(int oX, int oY, int oW, int oH)
     left2 = oX;
 
     right1 = left1 + width - 1 - collisionWidth;
-    right2 = left2 + oW - 1;
+    right2 = oX + oW - 1;
 
     top1 = tY;
     top2 = oY;
 
     bottom1 = top1 + height - 1 - collisionHeight;
-    bottom2 = top2 + oH - 1;
+    bottom2 = oY + oH - 1;
 
     if (bottom1 < top2) return false;
-    if (right1 < left2) return false;
     if (top1 > bottom2) return false;
+    if (right1 < left2) return false;
     if (left1 > right2) return false;
 
     return true;
@@ -304,6 +310,10 @@ bool GEntity::PosValid(int newX, int newY)
     int endX    = ((newX + collisionX) + width - collisionWidth - 1) / TILE_SIZE;
     int endY    = ((newY + collisionY) + height - collisionHeight - 1) / TILE_SIZE;
 
+    // check left and top out of bounds
+    if(startX < 0 || startY < 0)
+        return false;
+
     for(int tempY = startY; tempY <= endY; tempY++) {
         for(int tempX = startX; tempX <= endX; tempX++) {
             GTile* tile = GArea::AreaControl.GetTile(tempX * TILE_SIZE, tempY * TILE_SIZE);
@@ -313,7 +323,11 @@ bool GEntity::PosValid(int newX, int newY)
         }
     }
 
-    if( !(flags & ENTITY_FLAG_MAPONLY) ) {
+    bool ent = false;
+    if(flags & ENTITY_FLAG_MAPONLY) {
+
+    }
+    else {
         for(unsigned int i = 0; i < EntityList.size(); i++) {
             if(PosValidEntity(EntityList[i], newX, newY) == false) {
                 isValid = false;
@@ -329,7 +343,7 @@ bool GEntity::PosValid(int newX, int newY)
 bool GEntity::PosValidTile(GTile* tile)
 {
     if(tile == NULL) {
-        return true;
+        return false;
     }
 
     if(tile->TypeID == TILE_TYPE_BLOCK) {
@@ -347,6 +361,7 @@ bool GEntity::PosValidEntity(GEntity* entity, int newX, int newY)
        && entity->flags ^ ENTITY_FLAG_MAPONLY
        && entity->Collides(newX + collisionX, newY + collisionY, width - collisionWidth - 1, height - collisionHeight - 1)
             == true) {
+
                 GEntityCollision entityCollision;
 
                 entityCollision.entityA = this;
@@ -355,9 +370,9 @@ bool GEntity::PosValidEntity(GEntity* entity, int newX, int newY)
                 GEntityCollision::EntityCollisonList.push_back(entityCollision);
 
                 return false;
-            }
+    }
 
-            return true;
+    return true;
 }
 
 

@@ -36,10 +36,13 @@ protected:
     ResourceManager* resourceManager = NULL;
 
 public:
+    std::string name;
     float   X;
     float   Y;
     int     width;
     int     height;
+    int     textureWidth;
+    int     textureHeight;
     //int     animState;
 
 public:
@@ -71,7 +74,7 @@ public:
     virtual ~GEntity();
 
 public:
-    virtual bool OnLoad(const char* file, int width, int height, int maxFrames);
+    virtual bool OnLoad(const char* file, int width, int height, int textureWidth, int textureHeight, int maxFrames);
     virtual void OnLoop();
     virtual void OnCleanup();
     virtual void OnAnimate();

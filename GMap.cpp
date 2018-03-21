@@ -57,6 +57,7 @@ void GMap::OnRender(int mapX, int mapY)
 
             TextureUtils::OnDraw(texture, renderer,
                                  tx, ty,
+                                 TILE_SIZE, TILE_SIZE,
                                  tileSetX, tileSetY,
                                  TILE_SIZE, TILE_SIZE);
 
