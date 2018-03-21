@@ -1,4 +1,5 @@
 #include "GArea.h"
+#include <string>
 
 GArea GArea::AreaControl;
 
@@ -27,7 +28,7 @@ bool GArea::OnLoad(const char* file)
     fscanf(fileHandler, "%d\n", &areaSize);
     for(int x = 0; x < areaSize; x++) {
         for(int y = 0; y < areaSize; y++) {
-            char mapFile[255];
+            char mapFile[255] = "";
             fscanf(fileHandler, "%s ", mapFile);
             GMap tempMap(renderer, resourceManager);
             if(tempMap.OnLoad(mapFile) == false) {
@@ -100,6 +101,10 @@ GTile* GArea::GetTile(int X, int Y)
 {
     int mapWidth    = MAP_WIDTH * TILE_SIZE;
     int mapHeight   = MAP_HEIGHT * TILE_SIZE;
+
+    // check right and bottom out of bounds
+    if(X > (mapWidth * areaSize) || Y > (mapHeight * areaSize))
+        return NULL;
 
     GMap* gmap = GetMap(X, Y);
     if(gmap == NULL)
