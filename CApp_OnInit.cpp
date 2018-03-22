@@ -45,18 +45,21 @@ bool CApp::OnInit()
     player1 = new PlayerEntity(renderer, resourceManager);
     player2 = new PlayerEntity(renderer, resourceManager);
     if(player1->OnLoad(SPRITESHEET,
+                       64, 64,
                        ANIM_1_TEX_W, ANIM_1_TEX_H,
                        ANIM_1_FRAMES) == false) {
                         return false;
                        }
+    player1->name = "P1";
     if(player2->OnLoad(SPRITESHEET,
+                       64, 64,
                        ANIM_1_TEX_W, ANIM_1_TEX_H,
                        ANIM_1_FRAMES) == false) {
                         return false;
                        }
-    player1->X = 700;
+    player2->name = "P2";
+    player1->X = 300;
     player2->X = 100;
-    player1->flags = player1->flags | ENTITY_FLAG_MAPONLY;
     GEntity::EntityList.push_back(player1);
     GEntity::EntityList.push_back(player2);
     GCamera::CameraControl.targetMode = TARGET_MODE_CENTER;

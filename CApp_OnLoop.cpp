@@ -13,6 +13,20 @@ void CApp::OnLoop()
         GEntity::EntityList[i]->OnLoop();
     }
 
+    // handle queued collision events
+    for(unsigned int i=0; i < GEntityCollision::EntityCollisonList.size(); i++) {
+        GEntity* entityA = GEntityCollision::EntityCollisonList[i].entityA;
+        GEntity* entityB = GEntityCollision::EntityCollisonList[i].entityB;
+
+        if(entityA == NULL || entityB == NULL)
+            continue;
+
+        if(entityA->OnCollision(entityB)) {
+            entityB->OnCollision(entityA);
+        }
+    }
+    GEntityCollision::EntityCollisonList.clear();
+
     GFPS::FPSControl.OnLoop();
 
     char buffer[255];

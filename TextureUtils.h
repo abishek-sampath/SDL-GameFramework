@@ -28,7 +28,7 @@ public:
 
 
     static bool OnDraw(std::string file, SDL_Renderer* renderer, ResourceManager* resourceManager,
-                int X, int Y, int X2, int Y2, int W, int H)
+                int X, int Y, int W, int H, int X2, int Y2, int W2, int H2)
     {
         SDL_Texture* texture = resourceManager->loadImg(file, renderer);
         if(texture == NULL)
@@ -43,8 +43,8 @@ public:
         SDL_Rect textureRect;
         textureRect.x = X2;
         textureRect.y = Y2;
-        textureRect.w = W;
-        textureRect.h = H;
+        textureRect.w = W2;
+        textureRect.h = H2;
 
         SDL_RenderCopy(renderer, texture, &textureRect, &windowRect);
         return true;
@@ -52,7 +52,7 @@ public:
 
 
     static bool OnDraw(SDL_Texture* texture, SDL_Renderer* renderer,
-                int X, int Y, int X2, int Y2, int W, int H)
+                int X, int Y, int W, int H, int X2, int Y2, int W2, int H2)
     {
         if(texture == NULL)
         {
@@ -66,8 +66,8 @@ public:
         SDL_Rect textureRect;
         textureRect.x = X2;
         textureRect.y = Y2;
-        textureRect.w = W;
-        textureRect.h = H;
+        textureRect.w = W2;
+        textureRect.h = H2;
 
         SDL_RenderCopy(renderer, texture, &textureRect, &windowRect);
         return true;

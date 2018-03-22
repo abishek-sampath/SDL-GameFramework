@@ -55,6 +55,7 @@
 		<Unit filename="GCamera.h" />
 		<Unit filename="GEntity.cpp" />
 		<Unit filename="GEntity.h" />
+		<Unit filename="GEntityCollision.cpp" />
 		<Unit filename="GEvent.cpp" />
 		<Unit filename="GEvent.h" />
 		<Unit filename="GFPS.cpp" />
