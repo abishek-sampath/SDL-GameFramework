@@ -60,7 +60,13 @@ void PlayerEntity::OnAnimate()
 
 bool PlayerEntity::OnCollision(GEntity* entity)
 {
+    if(Y < entity->Y) {
+        entity->width *=0.7;
+        entity->height *=0.7;
+        entity->X = 300;
+    } else {
     Jump();
+    }
 
     return true;
 }
