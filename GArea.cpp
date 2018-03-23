@@ -5,7 +5,8 @@ GArea GArea::AreaControl;
 
 GArea::GArea()
 {
-    areaSize = 0;
+    areaSizeX = 0;
+    areaSizeY = 0;
 }
 
 
@@ -25,9 +26,10 @@ bool GArea::OnLoad(const char* file)
         return false;
     }
 
-    fscanf(fileHandler, "%d\n", &areaSize);
-    for(int x = 0; x < areaSize; x++) {
-        for(int y = 0; y < areaSize; y++) {
+    fscanf(fileHandler, "%d ", &areaSizeX);
+    fscanf(fileHandler, "%d \n", &areaSizeY);
+    for(int x = 0; x < areaSizeX; x++) {
+        for(int y = 0; y < areaSizeY; y++) {
             char mapFile[255] = "";
             fscanf(fileHandler, "%s ", mapFile);
             GMap tempMap(renderer, resourceManager);
@@ -57,17 +59,18 @@ void GArea::OnRender(int cameraX, int cameraY)
 //    int verticalMaps = ((-cameraY + SCREEN_WIDTH) / mapHeight) - (-cameraY / mapHeight) + 1;
 //    int mapsToLoad = horizontalMaps * verticalMaps;
 
-    int firstIDX = -cameraX / mapWidth;
-    int firstIDY = ((-cameraY / mapHeight) * areaSize);
-    int firstID = firstIDX + firstIDY;
-    for(int i = 0; i < 1; i++) {
-        int ID = firstID + ((i / 1) * areaSize) + (i % 1);
+    //int firstIDX = -cameraX / mapWidth;
+    //int firstIDY = ((-cameraY / mapHeight) * areaSizeY);
+    //int firstID = firstIDX + firstIDY;
+    for(int i = 0; i < (areaSizeX * areaSizeY); i++) {
+        //int ID = firstID + ((i / 2) * areaSizeX) + (i % 2);
+        int ID = i;
 
         if(ID < 0 || ID >= mapList.size())
             continue;
 
-        int x = ((ID % areaSize) *  mapWidth) + cameraX;
-        int y = ((ID / areaSize) * mapHeight) + cameraY;
+        int x = ((ID % areaSizeY) *  mapWidth) + cameraX;
+        int y = ((ID % areaSizeX) * mapHeight) + cameraY;
         mapList[ID].OnRender(x, y);
     }
 }
@@ -85,7 +88,7 @@ GMap* GArea::GetMap(int X, int Y)
     int mapHeight   = MAP_HEIGHT * TILE_SIZE;
 
     int ID = X / mapWidth;
-    ID = ID + ((Y / mapHeight) * areaSize);
+    ID = ID + ((Y / mapHeight) * areaSizeX);
 
     if(ID < 0 || ID >= mapList.size()) {
         return NULL;
@@ -102,7 +105,7 @@ GTile* GArea::GetTile(int X, int Y)
     int mapHeight   = MAP_HEIGHT * TILE_SIZE;
 
     // check right and bottom out of bounds
-    if(X > (mapWidth * areaSize) || Y > (mapHeight * areaSize))
+    if(X > (mapWidth * areaSizeY) || Y > (mapHeight * areaSizeX))
         return NULL;
 
     GMap* gmap = GetMap(X, Y);
