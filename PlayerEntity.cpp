@@ -4,8 +4,10 @@ PlayerEntity::PlayerEntity(SDL_Renderer* renderer, ResourceManager* resourceMana
 {
     collisionX = 20;
     collisionY = 0;
-    collisionWidth = 20;
+    collisionWidth = 35;
     collisionHeight = 0;
+
+    maxSpeedX = maxSpeedY = 10;
 }
 
 
