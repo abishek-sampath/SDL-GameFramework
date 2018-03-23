@@ -31,6 +31,8 @@ GEntity::GEntity(SDL_Renderer* renderer, ResourceManager* resourceManager)
     collisionWidth = collisionHeight = 0;
 
     canJump = false;
+
+    flip = SDL_FLIP_NONE;
 }
 
 
@@ -66,10 +68,10 @@ void GEntity::OnLoop()
     }
 
     if(moveLeft) {
-        accelX = -0.25;
+        accelX = -0.5;
     }
     else if(moveRight) {
-        accelX = 0.25;
+        accelX = 0.5;
     }
 
     if(flags & ENTITY_FLAG_GRAVITY) {
@@ -139,10 +141,12 @@ void GEntity::OnRender(std::vector<SDL_Rect> &textureRects)
         TextureUtils::OnDraw(texture, renderer,
                              X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
                              width, height,
-                             &textureRect);
+                             &textureRect,
+                             flip);
     }
     else
     {
+        std::cout << "NO TEXTURE : " << AnimControl.GetCurrentFrame() << " : " << textureRects.size() <<  "\n";
         TextureUtils::OnDraw(texture, renderer,
                              X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
                              width, height,
@@ -162,12 +166,12 @@ void GEntity::OnCleanup()
 
 void GEntity::OnAnimate()
 {
-    if(moveLeft) {
-        currentFrameCol = 0;
-    }
-    else if(moveRight) {
-        currentFrameCol = 1;
-    }
+//    if(moveLeft) {
+//        currentFrameCol = 0;
+//    }
+//    else if(moveRight) {
+//        currentFrameCol = 1;
+//    }
 
     AnimControl.OnAnimate();
 }
@@ -230,7 +234,6 @@ void GEntity::OnMove(float moveX, float moveY)
                     canJump = true;
                 }
                 speedY = 0;
-                moveY = 0;
             }
         }
 

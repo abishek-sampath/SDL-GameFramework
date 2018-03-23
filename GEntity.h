@@ -43,6 +43,7 @@ public:
     int     height;
     int     textureWidth;
     int     textureHeight;
+    SDL_RendererFlip flip;
     //int     animState;
 
 public:

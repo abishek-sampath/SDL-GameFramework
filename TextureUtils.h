@@ -75,7 +75,7 @@ public:
 
 
     static bool OnDraw(SDL_Texture* texture, SDL_Renderer* renderer,
-                int X, int Y, int W, int H, SDL_Rect* textureRect)
+                int X, int Y, int W, int H, SDL_Rect* textureRect, SDL_RendererFlip flip = SDL_FLIP_NONE)
     {
         if(texture == NULL)
         {
@@ -84,10 +84,10 @@ public:
         SDL_Rect windowRect;
         windowRect.x = X;
         windowRect.y = Y;
-        windowRect.w = W;
-        windowRect.h = H;
+        windowRect.w = textureRect->w;
+        windowRect.h = textureRect->h;
 
-        SDL_RenderCopy(renderer, texture, textureRect, &windowRect);
+        SDL_RenderCopyEx(renderer, texture, textureRect, &windowRect,  0, NULL, flip);
         return true;
     }
 
