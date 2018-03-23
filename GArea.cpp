@@ -18,7 +18,7 @@ bool GArea::OnLoad(const char* file)
         return false;
     }
 
-    char tileSetFile[255];
+    char tileSetFile[255]="";
     fscanf(fileHandler, "%s\n", tileSetFile);
     if((texture = resourceManager->loadImg(tileSetFile, renderer)) == NULL) {
         fclose(fileHandler);
@@ -60,9 +60,8 @@ void GArea::OnRender(int cameraX, int cameraY)
     int firstIDX = -cameraX / mapWidth;
     int firstIDY = ((-cameraY / mapHeight) * areaSize);
     int firstID = firstIDX + firstIDY;
-
-    for(int i = 0; i < 9; i++) {
-        int ID = firstID + ((i / 3) * areaSize) + (i % 3);
+    for(int i = 0; i < 1; i++) {
+        int ID = firstID + ((i / 1) * areaSize) + (i % 1);
 
         if(ID < 0 || ID >= mapList.size())
             continue;
