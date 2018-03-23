@@ -32,12 +32,12 @@ bool CApp::OnInit()
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
     // Initialize resource manager
-    resourceManager = ResourceManager::instance();
+    resourceManager = ResourceManager::instance(renderer);
 
     // Initialize Area with renderer and resource manager
     GArea::AreaControl.renderer = renderer;
     GArea::AreaControl.resourceManager = resourceManager;
-    if(GArea::AreaControl.OnLoad(AREA_1) == false) {
+    if(GArea::AreaControl.OnLoad(AREA_2) == false) {
         return false;
     }
 
@@ -51,17 +51,8 @@ bool CApp::OnInit()
                         return false;
                        }
     player1->name = "P1";
-    if(player2->OnLoad(SPRITESHEET,
-                       64, 64,
-                       ANIM_1_TEX_W, ANIM_1_TEX_H,
-                       ANIM_1_FRAMES) == false) {
-                        return false;
-                       }
-    player2->name = "P2";
-    player1->X = 300;
-    player2->X = 100;
+    player1->X = 100;
     GEntity::EntityList.push_back(player1);
-    GEntity::EntityList.push_back(player2);
     GCamera::CameraControl.targetMode = TARGET_MODE_CENTER;
     GCamera::CameraControl.SetTarget(&player1->X, &player1->Y);
 
