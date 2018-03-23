@@ -55,7 +55,7 @@ void CApp::OnKeyUp(SDL_Keycode &sym, Uint16 &mod)
         break;
     case SDLK_LSHIFT:
         player1->maxSpeedX = 10;
-        player1->maxSpeedY = 1;
+        player1->maxSpeedY = 10;
         break;
     default:{}
     }
