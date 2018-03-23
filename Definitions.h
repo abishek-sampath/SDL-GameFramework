@@ -23,8 +23,9 @@ const bool IS_ANIM_2_VERT = false;
 
 // Areas, Maps and Tiles
 #define AREA_1      "./areas/1.area"
-#define MAP_WIDTH   40
-#define MAP_HEIGHT  40
-#define TILE_SIZE   16
+#define AREA_2      "./areas/testing_mario.area"
+#define MAP_WIDTH   30
+#define MAP_HEIGHT  15
+#define TILE_SIZE   30
 
 #endif // DEFINITIONS_H_INCLUDED
