@@ -19,10 +19,12 @@ void CApp::OnKeyDown(SDL_Keycode &sym, Uint16 &mod)
     {
     case SDLK_LEFT:
         player1->moveLeft = true;
+        player1->flip = SDL_FLIP_HORIZONTAL;
         //GCamera::CameraControl.OnMove(-15, 0);
         break;
     case SDLK_RIGHT:
         player1->moveRight = true;
+        player1->flip = SDL_FLIP_NONE;
         //GCamera::CameraControl.OnMove(15, 0);
         break;
     case SDLK_UP:
@@ -32,8 +34,8 @@ void CApp::OnKeyDown(SDL_Keycode &sym, Uint16 &mod)
         //GCamera::CameraControl.OnMove(0, 15);
         break;
     case SDLK_LSHIFT:
-        player1->maxSpeedX = 20;
-        player1->maxSpeedY = 20;
+        player1->maxSpeedX = (P1_MAX_SPEED_X * 2);
+        player1->maxSpeedY = (P1_MAX_SPEED_Y * 2);
         break;
     case SDLK_SPACE:
         player1->Jump();
@@ -54,8 +56,8 @@ void CApp::OnKeyUp(SDL_Keycode &sym, Uint16 &mod)
         player1->moveRight = false;
         break;
     case SDLK_LSHIFT:
-        player1->maxSpeedX = 10;
-        player1->maxSpeedY = 10;
+        player1->maxSpeedX = P1_MAX_SPEED_X;
+        player1->maxSpeedY = P1_MAX_SPEED_Y;
         break;
     default:{}
     }
