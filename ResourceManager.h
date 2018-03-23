@@ -16,12 +16,25 @@
  * Implements the resource manager functions
  */
 class ResourceManager {
+
+private:
+    SDL_Renderer* renderer = NULL;
+
+    /**
+	 * private constructor
+	 */
+    ResourceManager(SDL_Renderer* renderer)
+    {
+	    this->renderer = renderer;
+    }
+
 public:
+
 	/**
 	 * Creating a single instance of the ResourceManager
 	 */
-	static ResourceManager* instance() {
-		static ResourceManager* instance = new ResourceManager();
+	static ResourceManager* instance(SDL_Renderer* renderer) {
+		static ResourceManager* instance = new ResourceManager(renderer);
 		return instance;
 	}
 
@@ -89,6 +102,7 @@ public:
 	{
 	    for(auto&& entry : imageResourceMap) {
             SDL_DestroyTexture(entry.second);
+            entry.second = NULL;
 	    }
 	    imageResourceMap.clear();
 	}
