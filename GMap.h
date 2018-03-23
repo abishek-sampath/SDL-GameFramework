@@ -20,14 +20,18 @@ private:
 
 private:
     std::vector<GTile> tileList;
+	std::map<int, std::string> propsResourceMap;
 
 public:
     GMap(SDL_Renderer* renderer, ResourceManager* resourceManager);
-    bool OnLoad(char* file);
+    bool OnLoad(const char* file);
     void OnRender(int mapX, int mapY);
+    bool loadAllProps(char* propFile);
+    bool loadAllProps(char* propFile, int r, int g, int b);
 
 public:
     GTile* GetTile(int X, int Y);
+    SDL_Texture* getPropTexture(int prop);
 };
 
 #endif // GMAP_H_INCLUDED
