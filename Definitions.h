@@ -21,6 +21,14 @@ const bool IS_ANIM_1_VERT = true;
 #define ANIM_2_FRAMES   8
 const bool IS_ANIM_2_VERT = false;
 
+//ingame player
+#define NORMAL_ANIM_STR     "normal_anim"
+#define NORMAL_ANIM_FILE    "./other/animations/player.anim"
+#define JUMP_ANIM_STR       "jump_anim"
+#define JUMP_ANIM_FILE      "./other/animations/jump.player.anim"
+#define P1_MAX_SPEED_X        5
+#define P1_MAX_SPEED_Y        10
+
 // Areas, Maps and Tiles
 #define AREA_1      "./areas/1.area"
 #define AREA_2      "./areas/testing_mario.area"
