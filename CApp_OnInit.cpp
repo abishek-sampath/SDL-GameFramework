@@ -57,6 +57,14 @@ bool CApp::OnInit()
     GCamera::CameraControl.SetTarget(&player1->X, &player1->Y);
 
 
+    // BULLETS
+    // Initialize Bullet Images
+    resourceManager->loadImg(BULLET_FIRE_IMG, renderer);
+    resourceManager->loadImg(BULLET_IMG, renderer);
+    // Initialize Bullet explosion rects
+
+
+
     //TEMP SDL RECT FRAMES
 //    std::vector<SDL_Rect> anim_1_frames;
 //    SDL_Rect frame1 = {0, 0, 75, 132};

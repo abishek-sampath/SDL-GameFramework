@@ -12,6 +12,7 @@
 #include "GCamera.h"
 
 #include "PlayerEntity.h"
+#include "BulletEntity.h"
 
 #include "ResourceManager.h"
 #include "TextureUtils.h"

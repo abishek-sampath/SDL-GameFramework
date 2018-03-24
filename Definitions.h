@@ -4,8 +4,8 @@
 #define DEFINITIONS_H_INCLUDED
 
 // window
-#define SCREEN_WIDTH    960
-#define SCREEN_HEIGHT   720
+#define SCREEN_WIDTH    640
+#define SCREEN_HEIGHT   450
 #define TITLE           "SDL Trials"
 
 
@@ -28,6 +28,12 @@ const bool IS_ANIM_2_VERT = false;
 #define JUMP_ANIM_FILE      "./other/animations/jump.player.anim"
 #define P1_MAX_SPEED_X        5
 #define P1_MAX_SPEED_Y        10
+
+// bullet
+#define BULLET_FIRE_IMG     "./images/bullet_fire.png"
+#define BULLET_IMG          "./images/bullet.png"
+#define BULLET_MAXSPEED     20
+#define BULLET_EXPLODE_ANIM_FILE    "./other/animations/bullet_explode.anim"
 
 // Areas, Maps and Tiles
 #define AREA_1      "./areas/1.area"
