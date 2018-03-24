@@ -67,12 +67,13 @@ void GEntity::OnLoop()
         StopMove();
     }
 
-    if(moveLeft) {
-        accelX = -0.5;
-    }
-    else if(moveRight) {
-        accelX = 0.5;
-    }
+// CODE MOVED TO INDIVIDUAL ENTITIES
+//    if(moveLeft && accelX == 0) {
+//        accelX = -0.5;
+//    }
+//    else if(moveRight && accelX == 0) {
+//        accelX = 0.5;
+//    }
 
     if(flags & ENTITY_FLAG_GRAVITY) {
         accelY = 0.75;
@@ -104,7 +105,7 @@ void GEntity::OnRender()
            X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
            width, height,
            0, 0,
-           textureWidth, textureHeight);
+           width, height);
 }
 
 
@@ -146,7 +147,6 @@ void GEntity::OnRender(std::vector<SDL_Rect> &textureRects)
     }
     else
     {
-        std::cout << "NO TEXTURE : " << AnimControl.GetCurrentFrame() << " : " << textureRects.size() <<  "\n";
         TextureUtils::OnDraw(texture, renderer,
                              X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
                              width, height,
