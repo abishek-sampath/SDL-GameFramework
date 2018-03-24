@@ -52,6 +52,23 @@ public:
 
 
     static bool OnDraw(SDL_Texture* texture, SDL_Renderer* renderer,
+                int X, int Y, int W, int H)
+    {
+        if(texture == NULL)
+        {
+            return false;
+        }
+        SDL_Rect rect;
+        rect.x = X;
+        rect.y = Y;
+        rect.w = W;
+        rect.h = H;
+        SDL_RenderCopy(renderer, texture, NULL, &rect);
+        return true;
+    }
+
+
+    static bool OnDraw(SDL_Texture* texture, SDL_Renderer* renderer,
                 int X, int Y, int W, int H, int X2, int Y2, int W2, int H2)
     {
         if(texture == NULL)
