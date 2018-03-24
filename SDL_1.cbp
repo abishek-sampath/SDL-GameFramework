@@ -39,6 +39,8 @@
 			<Add library="SDL2_ttf" />
 			<Add library="SDL2_mixer" />
 		</Linker>
+		<Unit filename="BulletEntity.cpp" />
+		<Unit filename="BulletEntity.h" />
 		<Unit filename="CApp.cpp" />
 		<Unit filename="CApp.h" />
 		<Unit filename="CApp_OnCleanup.cpp" />
