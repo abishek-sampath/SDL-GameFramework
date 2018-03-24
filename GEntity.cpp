@@ -31,6 +31,8 @@ GEntity::GEntity(SDL_Renderer* renderer, ResourceManager* resourceManager)
     collisionWidth = collisionHeight = 0;
 
     canJump = false;
+
+    flip = SDL_FLIP_NONE;
 }
 
 
@@ -65,12 +67,13 @@ void GEntity::OnLoop()
         StopMove();
     }
 
-    if(moveLeft) {
-        accelX = -0.25;
-    }
-    else if(moveRight) {
-        accelX = 0.25;
-    }
+// CODE MOVED TO INDIVIDUAL ENTITIES
+//    if(moveLeft && accelX == 0) {
+//        accelX = -0.5;
+//    }
+//    else if(moveRight && accelX == 0) {
+//        accelX = 0.5;
+//    }
 
     if(flags & ENTITY_FLAG_GRAVITY) {
         accelY = 0.75;
@@ -102,7 +105,7 @@ void GEntity::OnRender()
            X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
            width, height,
            0, 0,
-           textureWidth, textureHeight);
+           width, height);
 }
 
 
@@ -139,7 +142,8 @@ void GEntity::OnRender(std::vector<SDL_Rect> &textureRects)
         TextureUtils::OnDraw(texture, renderer,
                              X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
                              width, height,
-                             &textureRect);
+                             &textureRect,
+                             flip);
     }
     else
     {
@@ -162,12 +166,12 @@ void GEntity::OnCleanup()
 
 void GEntity::OnAnimate()
 {
-    if(moveLeft) {
-        currentFrameCol = 0;
-    }
-    else if(moveRight) {
-        currentFrameCol = 1;
-    }
+//    if(moveLeft) {
+//        currentFrameCol = 0;
+//    }
+//    else if(moveRight) {
+//        currentFrameCol = 1;
+//    }
 
     AnimControl.OnAnimate();
 }
@@ -230,7 +234,6 @@ void GEntity::OnMove(float moveX, float moveY)
                     canJump = true;
                 }
                 speedY = 0;
-                moveY = 0;
             }
         }
 

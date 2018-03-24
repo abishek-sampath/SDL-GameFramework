@@ -14,7 +14,8 @@ public:
     std::vector<GMap> mapList;
 
 private:
-    int areaSize;
+    int areaSizeX;
+    int areaSizeY;
     SDL_Texture* texture;
 
 public:

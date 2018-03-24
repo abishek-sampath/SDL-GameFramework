@@ -52,6 +52,23 @@ public:
 
 
     static bool OnDraw(SDL_Texture* texture, SDL_Renderer* renderer,
+                int X, int Y, int W, int H)
+    {
+        if(texture == NULL)
+        {
+            return false;
+        }
+        SDL_Rect rect;
+        rect.x = X;
+        rect.y = Y;
+        rect.w = W;
+        rect.h = H;
+        SDL_RenderCopy(renderer, texture, NULL, &rect);
+        return true;
+    }
+
+
+    static bool OnDraw(SDL_Texture* texture, SDL_Renderer* renderer,
                 int X, int Y, int W, int H, int X2, int Y2, int W2, int H2)
     {
         if(texture == NULL)
@@ -75,7 +92,7 @@ public:
 
 
     static bool OnDraw(SDL_Texture* texture, SDL_Renderer* renderer,
-                int X, int Y, int W, int H, SDL_Rect* textureRect)
+                int X, int Y, int W, int H, SDL_Rect* textureRect, SDL_RendererFlip flip = SDL_FLIP_NONE)
     {
         if(texture == NULL)
         {
@@ -84,10 +101,10 @@ public:
         SDL_Rect windowRect;
         windowRect.x = X;
         windowRect.y = Y;
-        windowRect.w = W;
-        windowRect.h = H;
+        windowRect.w = textureRect->w;
+        windowRect.h = textureRect->h;
 
-        SDL_RenderCopy(renderer, texture, textureRect, &windowRect);
+        SDL_RenderCopyEx(renderer, texture, textureRect, &windowRect,  0, NULL, flip);
         return true;
     }
 

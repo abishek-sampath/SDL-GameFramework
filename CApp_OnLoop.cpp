@@ -10,6 +10,10 @@ void CApp::OnLoop()
     for(unsigned int i=0; i < GEntity::EntityList.size(); i++) {
         if(!GEntity::EntityList[i])
             continue;
+        if(GEntity::EntityList[i]->dead) {
+            GEntity::EntityList[i]->OnCleanup();
+            GEntity::EntityList.erase(GEntity::EntityList.begin() + i);
+        }
         GEntity::EntityList[i]->OnLoop();
     }
 

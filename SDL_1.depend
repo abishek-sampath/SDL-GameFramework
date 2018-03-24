@@ -73,7 +73,7 @@
 1521436929 source:g:\my works\gamedev\sdl\sdl-gameframework\capp.cpp
 	"CApp.h"
 
-1521536475 g:\my works\gamedev\sdl\sdl-gameframework\capp.h
+1521858272 g:\my works\gamedev\sdl\sdl-gameframework\capp.h
 	<SDL.h>
 	<iostream>
 	<unordered_map>
@@ -83,6 +83,7 @@
 	"GArea.h"
 	"GCamera.h"
 	"PlayerEntity.h"
+	"BulletEntity.h"
 	"ResourceManager.h"
 	"TextureUtils.h"
 	"Definitions.h"
@@ -106,23 +107,23 @@
 	<map>
 	<iostream>
 
-1521768448 g:\my works\gamedev\sdl\sdl-gameframework\textureutils.h
+1521876807 g:\my works\gamedev\sdl\sdl-gameframework\textureutils.h
 	<SDL.h>
 	"ResourceManager.h"
 
-1521765814 g:\my works\gamedev\sdl\sdl-gameframework\definitions.h
+1521880257 g:\my works\gamedev\sdl\sdl-gameframework\definitions.h
 	<iostream>
 
-1521485776 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oncleanup.cpp
+1521860523 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oncleanup.cpp
 	"CApp.h"
 
-1521768544 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onevent.cpp
+1521879802 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onevent.cpp
 	"CApp.h"
 
-1521768530 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oninit.cpp
+1521878894 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oninit.cpp
 	"CApp.h"
 
-1521759447 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onloop.cpp
+1521879081 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onloop.cpp
 	"CApp.h"
 
 1521532992 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onrender.cpp
@@ -145,7 +146,7 @@
 1521416444 source:g:\my works\gamedev\sdl\sdl-gameframework\canimation.cpp
 	"CAnimation.h"
 
-1521528209 g:\my works\gamedev\sdl\sdl-gameframework\garea.h
+1521845149 g:\my works\gamedev\sdl\sdl-gameframework\garea.h
 	"GMap.h"
 
 1521765937 g:\my works\gamedev\sdl\sdl-gameframework\gmap.h
@@ -171,14 +172,14 @@
 1521419652 source:g:\my works\gamedev\sdl\sdl-gameframework\gtile.cpp
 	"GTile.h"
 
-1521767969 source:g:\my works\gamedev\sdl\sdl-gameframework\garea.cpp
+1521848773 source:g:\my works\gamedev\sdl\sdl-gameframework\garea.cpp
 	"GArea.h"
 	<string>
 
 1521536463 g:\my works\gamedev\sdl\sdl-gameframework\gevent.h
 	<SDL.h>
 
-1521759447 g:\my works\gamedev\sdl\sdl-gameframework\gentity.h
+1521841672 g:\my works\gamedev\sdl\sdl-gameframework\gentity.h
 	<vector>
 	"GAnimation.h"
 	"GCamera.h"
@@ -193,10 +194,10 @@
 1521530884 g:\my works\gamedev\sdl\sdl-gameframework\gfps.h
 	<SDL.h>
 
-1521759447 g:\my works\gamedev\sdl\sdl-gameframework\playerentity.h
+1521849113 g:\my works\gamedev\sdl\sdl-gameframework\playerentity.h
 	"GEntity.h"
 
-1521595044 source:g:\my works\gamedev\sdl\sdl-gameframework\ganimation.cpp
+1521850694 source:g:\my works\gamedev\sdl\sdl-gameframework\ganimation.cpp
 	"GAnimation.h"
 
 1521536471 source:g:\my works\gamedev\sdl\sdl-gameframework\gevent.cpp
@@ -205,13 +206,20 @@
 1521531013 source:g:\my works\gamedev\sdl\sdl-gameframework\gfps.cpp
 	"GFPS.h"
 
-1521768650 source:g:\my works\gamedev\sdl\sdl-gameframework\playerentity.cpp
+1521880180 source:g:\my works\gamedev\sdl\sdl-gameframework\playerentity.cpp
 	"PlayerEntity.h"
 
-1521759447 source:g:\my works\gamedev\sdl\sdl-gameframework\gentity.cpp
+1521880124 source:g:\my works\gamedev\sdl\sdl-gameframework\gentity.cpp
 	"GEntity.h"
 	"TextureUtils.h"
 
 1521759447 source:g:\my works\gamedev\sdl\sdl-gameframework\gentitycollision.cpp
+	"GEntity.h"
+
+1521880297 source:g:\my works\gamedev\sdl\sdl-gameframework\bulletentity.cpp
+	"BulletEntity.h"
+	<exception>
+
+1521863185 g:\my works\gamedev\sdl\sdl-gameframework\bulletentity.h
 	"GEntity.h"
 
