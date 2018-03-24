@@ -4,7 +4,7 @@ PlayerEntity::PlayerEntity(SDL_Renderer* renderer, ResourceManager* resourceMana
 {
     collisionX = 20;
     collisionY = 0;
-    collisionWidth = 35;
+    collisionWidth = 45;
     collisionHeight = 0;
 
     maxSpeedX = P1_MAX_SPEED_X;
@@ -25,6 +25,13 @@ bool PlayerEntity::OnLoad(const char* file, int width, int height, int textureWi
 
 void PlayerEntity::OnLoop()
 {
+    if(moveLeft) {
+        accelX = -0.5;
+    }
+    else if(moveRight) {
+        accelX = 0.5;
+    }
+
     GEntity::OnLoop();
     if(speedY == 0) {
         getFrameSet(NORMAL_ANIM_STR);
@@ -77,13 +84,13 @@ void PlayerEntity::OnAnimate()
 
 bool PlayerEntity::OnCollision(GEntity* entity)
 {
-    if(Y < entity->Y) {
-        entity->width *=0.7;
-        entity->height *=0.7;
-        entity->X = 300;
-    } else {
-        PlayerEntity::Jump();
-    }
+//    if(Y < entity->Y) {
+//        entity->width *=0.7;
+//        entity->height *=0.7;
+//        entity->X = 300;
+//    } else {
+//        PlayerEntity::Jump();
+//    }
 
     return true;
 }
