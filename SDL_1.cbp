@@ -49,6 +49,8 @@
 		<Unit filename="CApp_OnLoop.cpp" />
 		<Unit filename="CApp_OnRender.cpp" />
 		<Unit filename="Definitions.h" />
+		<Unit filename="EnemyEntity.cpp" />
+		<Unit filename="EnemyEntity.h" />
 		<Unit filename="GAnimation.cpp" />
 		<Unit filename="GAnimation.h" />
 		<Unit filename="GArea.cpp" />
@@ -66,6 +68,8 @@
 		<Unit filename="GMap.h" />
 		<Unit filename="GTile.cpp" />
 		<Unit filename="GTile.h" />
+		<Unit filename="LifeUpgradeEntity.cpp" />
+		<Unit filename="LifeUpgradeEntity.h" />
 		<Unit filename="PlayerEntity.cpp" />
 		<Unit filename="PlayerEntity.h" />
 		<Unit filename="ResourceManager.h" />
