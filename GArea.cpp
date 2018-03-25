@@ -117,3 +117,15 @@ GTile* GArea::GetTile(int X, int Y)
 
     return gmap->GetTile(X, Y);
 }
+
+
+int GArea::GetAreaWidth()
+{
+    return areaSizeY * MAP_WIDTH * TILE_SIZE;
+}
+
+
+int GArea::GetAreaHeight()
+{
+    return areaSizeX * MAP_HEIGHT * TILE_SIZE;
+}

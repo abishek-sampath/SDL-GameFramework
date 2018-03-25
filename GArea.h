@@ -27,6 +27,8 @@ public:
 public:
     GMap*   GetMap(int X, int Y);
     GTile*  GetTile(int X, int Y);
+    int GetAreaWidth();
+    int GetAreaHeight();
 };
 
 #endif // GAREA_H_INCLUDED

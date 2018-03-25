@@ -22,6 +22,7 @@ const bool IS_ANIM_1_VERT = true;
 const bool IS_ANIM_2_VERT = false;
 
 //ingame player
+#define PLAYER_NAME         "PLAYER1"
 #define NORMAL_ANIM_STR     "normal_anim"
 #define NORMAL_ANIM_FILE    "./other/animations/player.anim"
 #define JUMP_ANIM_STR       "jump_anim"
@@ -30,10 +31,22 @@ const bool IS_ANIM_2_VERT = false;
 #define P1_MAX_SPEED_Y        10
 
 // bullet
+#define BULLET_NAME         "BULLET"
 #define BULLET_FIRE_IMG     "./images/bullet_fire.png"
 #define BULLET_IMG          "./images/bullet.png"
 #define BULLET_MAXSPEED     20
+#define BULLET_EXPLODE_SPEED     5
 #define BULLET_EXPLODE_ANIM_FILE    "./other/animations/bullet_explode.anim"
+
+// enemy
+#define ENEMY_NAME          "ENEMY"
+#define ENEMY_ANIM_FILE     "./other/animations/enemy.anim"
+#define ENEMY_MAXSPEEDX      5
+#define ENEMY_MAXSPEEDY      20
+
+// life upgrade
+#define LIFE_NAME           "LIFE"
+#define LIFE_ANIM_FILE      "./other/animations/life_upgrade.anim"
 
 // Areas, Maps and Tiles
 #define AREA_1      "./areas/1.area"

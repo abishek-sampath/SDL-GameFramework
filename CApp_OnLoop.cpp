@@ -12,6 +12,7 @@ void CApp::OnLoop()
             continue;
         if(GEntity::EntityList[i]->dead) {
             GEntity::EntityList[i]->OnCleanup();
+            //delete(GEntity::EntityList[i]);
             GEntity::EntityList.erase(GEntity::EntityList.begin() + i);
         }
         GEntity::EntityList[i]->OnLoop();

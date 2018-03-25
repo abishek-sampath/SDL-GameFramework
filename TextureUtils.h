@@ -98,11 +98,12 @@ public:
         {
             return false;
         }
+
         SDL_Rect windowRect;
         windowRect.x = X;
         windowRect.y = Y;
-        windowRect.w = textureRect->w;
-        windowRect.h = textureRect->h;
+        windowRect.w = W;
+        windowRect.h = H;
 
         SDL_RenderCopyEx(renderer, texture, textureRect, &windowRect,  0, NULL, flip);
         return true;
