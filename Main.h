@@ -2,6 +2,8 @@
 #define RSPWN_BRKOUT_MAIN
 
 #include "Menu.h"
+#include "ScoreBoard.h"
+#include "CApp.h"
 #include "Exit.h"
 #include "Definitions.h"
 
@@ -12,6 +14,11 @@
  * Points to the menu object
  */
 Menu*	menuObj		= NULL;
+
+/**
+ * Points to the menu object
+ */
+ScoreBoard*	scoreObj	= NULL;
 
 /**
  * Points to the exit object
@@ -42,6 +49,11 @@ SDL_Renderer*	renderer = NULL;
  * Points to the SDL window object
  */
 SDL_Window*		window = NULL;
+
+/**
+ * Points to the Resource Manager
+ */
+ResourceManager* resourceManager = NULL;
 
 // Color Variables //
 
@@ -133,9 +145,14 @@ void ClearScreen();
 void enforceFPS(int frameStartTime);
 
 /**
+ * Save score from currently ended game
+ */
+void saveScore(int score, Uint32 timeElapsed);
+
+/**
  * Main function
  */
-int main(int argc, char* argv);
+int main(int argc, char** argv);
 
 #endif // !RSPWN_BRKOUT_MAIN
 

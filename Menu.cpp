@@ -30,8 +30,14 @@ Menu::Menu(stack<State>	*gameStateStack,
 
 
 	// set background texture
-	menuBackgroundtexture = SDL_CreateTextureFromSurface(renderer,
-		SDL_LoadBMP(MENU_BG_IMAGE));
+    SDL_Surface* img = IMG_Load(MENU_BG_IMAGE);
+    if (img == NULL)
+    {
+        SDL_Log("Failed to allocate surface");
+    }
+    menuBackgroundtexture = SDL_CreateTextureFromSurface(renderer, img);
+    SDL_FreeSurface(img);
+
 	// load language and menu options
 	menuOptionChanged = true;
 	langOptionChanged = true;
@@ -211,6 +217,15 @@ void Menu::HandleMenuInput() {
 					State currentState;
 					currentState.StatePointer = GameState;
 					gameStateStack->push(currentState);
+					return;
+				}
+				if (currentMenuOption == LEADERBOARD_GAME_OPTION) {
+					// play sound
+					Mix_PlayChannel(-1, select_sound, 0);
+					State currentState;
+					currentState.StatePointer = ScoreBoardState;
+					gameStateStack->push(currentState);
+					return;
 				}
 				if (currentMenuOption == EXIT_GAME_OPTION) {
 					// play sound
@@ -263,11 +278,12 @@ void Menu::SetMenu() {
  * Render menu background
  */
 void Menu::SetMenuBackground() {
-	int r = rand() % 255;
-	int g = rand() % 255;
-	int b = rand() % 255;
-	SDL_SetTextureColorMod(menuBackgroundtexture, r, g, b);
-	SDL_RenderCopy(renderer, menuBackgroundtexture, NULL, NULL);
+    SDL_Rect rect;
+    rect.w = SCREEN_WIDTH * 0.8;
+    rect.h = SCREEN_HEIGHT * 0.3;
+    rect.x = (SCREEN_WIDTH / 2) - (rect.w / 2);
+    rect.y = 20;
+	SDL_RenderCopy(renderer, menuBackgroundtexture,NULL, &rect);
 }
 
 /**

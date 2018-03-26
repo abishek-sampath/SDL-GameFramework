@@ -12,7 +12,7 @@ long counter = 1;
 /**
  * Main function
  */
-int main(int argc, char* argv) {
+int main(int argc, char** argv) {
 	// Initialise game components
 	Init();
 
@@ -73,6 +73,9 @@ void Init() {
 		printf("Media could not be loaded! \n");
 	}
 
+    // Initialize resource manager
+    resourceManager = ResourceManager::instance(renderer);
+
 	// allocate new memory
 	if (gameStateStack == NULL)
 		gameStateStack = new stack<State>;
@@ -102,6 +105,9 @@ void Init() {
 		bg_music,
 		menu_sound,
 		select_sound);
+    scoreObj = new ScoreBoard(gameStateStack,
+                              renderer,
+                              resourceManager);
 }
 
 /**
@@ -111,8 +117,14 @@ void CloseGame() {
 	// free resources allocated with new
 	delete(gameStateStack);
 	delete(stringData);
+	delete(scoreObj);
 	delete(menuObj);
 	delete(exitObj);
+	gameStateStack = NULL;
+	stringData = NULL;
+	scoreObj = NULL;
+	menuObj = NULL;
+	exitObj = NULL;
 
 	// close music resources
 	closeMusicMedia();
@@ -149,14 +161,42 @@ void MenuState() {
 }
 
 /**
+ * This function holds the scoreboard state
+ */
+void ScoreBoardState() {
+	// start music
+	if (Mix_PausedMusic() == 1)
+		Mix_ResumeMusic();
+	// clear screen
+	ClearScreen();
+	//set text to be rendered
+	scoreObj->SetScoreBoard();
+	//update Screen
+	SDL_RenderPresent(renderer);
+	// handle key input
+	scoreObj->HandleScoreBoardInput();
+}
+
+/**
  * Game State function
  */
 void GameState() {
 	// Make sure nothing from the last frame is still drawn. //
 	ClearScreen();
+	// call the game
+	std::cout << "Game starting\n";
+	CApp game(renderer, resourceManager);
+    game.OnExecute();
+    //get score after game
+    if(game.GetFinalScore() != -1) {
+        saveScore(game.GetFinalScore(), game.GetFinalTime());
+    }
 	// update and render the game components
+	std::cout << "Game closed\n";
 	// update Screen
 	SDL_RenderPresent(renderer);
+	//pop game object
+	gameStateStack->pop();
 }
 
 /**
@@ -234,7 +274,7 @@ bool loadFontTexture(FontTexture &texture, std::string &text, SDL_Color *color, 
 	{
 		//Render text
 		//SDL_Color textColor = { 0, 0, 0 };
-		if (!texture.loadFromRenderedText(renderer, text, *color, font))
+		if (!texture.loadFromRenderedText(renderer, text, *color, font, SCREEN_WIDTH))
 		{
 			printf("Failed to render text texture!\n");
 			success = false;
@@ -244,4 +284,45 @@ bool loadFontTexture(FontTexture &texture, std::string &text, SDL_Color *color, 
 	TTF_CloseFont(font);
 
 	return success;
+}
+
+
+/**
+ * Save score from currently ended game
+ */
+void saveScore(int score, Uint32 timeElapsed)
+{
+
+    std::ofstream outfile;
+    outfile.open(SAVE_FILE_TEMP);
+    outfile << score << " " << timeElapsed << '\n';
+
+    // open save file
+    std::ifstream ifile(SAVE_FILE);
+    if (ifile)
+    {
+        int n = 1;
+        //write to temp save file
+        int a;
+        Uint32 b;
+        while (ifile >> a >> b)
+        {
+            if(n > 5) {
+                break;
+            }
+            outfile << a << " " << b << '\n';
+            n++;
+        }
+        //close input stream
+        ifile.close();
+    }
+
+    //close output stream
+    outfile.close();
+
+    // delete old save file and rename temp to that name
+    if (remove(SAVE_FILE) !=0)
+           cout<<"Remove operation failed"<<endl;
+    if (rename(SAVE_FILE_TEMP, SAVE_FILE) !=0)
+           cout<<"Rename operation failed"<<endl;
 }
