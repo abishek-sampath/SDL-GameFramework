@@ -6,10 +6,14 @@ void CApp::OnCleanup()
 //        textRects.second.clear();
 //    }
 
+    TTF_CloseFont(font);
+    font = NULL;
+
     GArea::AreaControl.OnCleanup();
 
     // cleanup resource manager
     resourceManager->clearResource();
+    resourceManager = NULL;
 
     // cleanup entities
     for(unsigned int i=0; i < GEntity::EntityList.size(); i++) {
@@ -21,10 +25,10 @@ void CApp::OnCleanup()
     GEntity::EntityList.clear();
 
     // cleanup SDL resources
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+    //SDL_DestroyRenderer(renderer);
+    //SDL_DestroyWindow(window);
     renderer = NULL;
     window = NULL;
 
-    SDL_Quit();
+    //SDL_Quit();
 }
