@@ -21,8 +21,10 @@ public:
 
     bool loadLifeAnim(std::string animFile);
 
-private:
+public:
     bool lifeUsed;
+
+private:
     std::vector<SDL_Rect> frameSet;
 };
 
