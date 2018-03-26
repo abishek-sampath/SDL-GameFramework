@@ -87,6 +87,9 @@ bool EnemyEntity::OnCollision(GEntity* entity)
         this->dead = true;
         return true;
     }
+    if(entity->name == PLAYER_NAME) {
+        return true;
+    }
 
     return false;
 }
