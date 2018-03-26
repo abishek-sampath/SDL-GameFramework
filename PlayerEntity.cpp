@@ -35,6 +35,10 @@ void PlayerEntity::OnLoop()
     if(health < 1 || Y > GArea::AreaControl.GetAreaHeight())
         dead = true;
 
+    if(health > PLAYER_MAX_HEALTH) {
+        health = PLAYER_MAX_HEALTH;
+    }
+
     if(moveLeft) {
         accelX = -0.5;
     }
@@ -155,6 +159,8 @@ bool PlayerEntity::OnCollision(GEntity* entity)
             if(moveLeft) {
                 speedX = -speedX;
             }
+            // play sound
+            resourceManager->playSoundEffect(PLAYER_HIT_SOUND);
         }
     }
     return false;

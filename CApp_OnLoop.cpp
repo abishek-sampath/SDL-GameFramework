@@ -97,6 +97,7 @@ void CApp::GenerateLifePack(int currTime)
 
             LifeUpgradeEntity* life = (LifeUpgradeEntity*)lifeTemplate->clone();
             life->X = health_pos;
+            life->Y = 10;
             life->flags = ENTITY_FLAG_GRAVITY;
             GEntity::EntityList.push_back(life);
 
@@ -132,7 +133,12 @@ void CApp::GenerateWaveOfEnemies(int currTime)
 
         // CALL FUNCTION TO GENERATE ENEMY HERE
         EnemyEntity* enemy = (EnemyEntity*)enemyTemplate->clone();
+        if(newEnemyPosX < 0)
+            newEnemyPosX = 100;
+        if(newEnemyPosX > GArea::AreaControl.GetAreaWidth())
+            newEnemyPosX = GArea::AreaControl.GetAreaWidth() - 100;
         enemy->X = newEnemyPosX;
+        enemy->Y = 10;
         enemy->flags = ENTITY_FLAG_GRAVITY;
         GEntity::EntityList.push_back(enemy);
 
@@ -141,7 +147,7 @@ void CApp::GenerateWaveOfEnemies(int currTime)
             enemyGenerated = true;
             timeGenerated = currTime;
             createdEnemiesPerWaveSoFar = 0;
-            enemiesPerWave += 2;
+            enemiesPerWave++;
         }
     }
     if ((currTime == timeGenerated + 1) && (enemyGenerated == true))
@@ -172,7 +178,12 @@ void CApp::GenerateEnemyEntity(int currTime)
 
         // CALL FUNCTION TO GENERATE ENEMY HERE
         EnemyEntity* enemy = (EnemyEntity*)enemyTemplate->clone();
+        if(newEnemyPosX < 0)
+            newEnemyPosX = 100;
+        if(newEnemyPosX > GArea::AreaControl.GetAreaWidth())
+            newEnemyPosX = GArea::AreaControl.GetAreaWidth() - 100;
         enemy->X = newEnemyPosX;
+        enemy->Y = 10;
         enemy->flags = ENTITY_FLAG_GRAVITY;
         GEntity::EntityList.push_back(enemy);
 

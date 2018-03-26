@@ -64,6 +64,8 @@ bool LifeUpgradeEntity::OnCollision(GEntity* entity)
         Y -= 40;
         AnimControl.maxFrames = 0;
         dead = true;
+        // play sound
+        resourceManager->playSoundEffect(LIFE_USED_SOUND);
     }
     if(entity->name == ENEMY_NAME) {
         dead = true;

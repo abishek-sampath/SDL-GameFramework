@@ -8,6 +8,7 @@
 #endif
 
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <string>
 #include <map>
 #include <iostream>
@@ -130,11 +131,54 @@ public:
     }
 
 
+    /**
+	 * This function loads the sound resource onto memory if it does not exist
+	 */
+	void loadSoundEffect(std::string soundFile) {
+		std::map<std::string, Mix_Chunk*>::iterator it = soundResourceMap.find(soundFile);
+		// if already in the map
+		if (it != soundResourceMap.end()) {
+			// SDL_Log("Loaded from resource manager.");
+			return;
+		}
+		// if not, load it and add it
+		else {
+            Mix_Chunk* soundEffect = NULL;
+            soundEffect = Mix_LoadWAV(soundFile.c_str());
+            if(soundEffect == NULL) {
+                return;
+            }
+			soundResourceMap.insert(std::pair<std::string, Mix_Chunk*>(soundFile, soundEffect));
+		}
+	}
+
+
+	/**
+	 * This function plays the sound resource if it exists
+	 */
+	void playSoundEffect(std::string soundFile) {
+		std::map<std::string, Mix_Chunk*>::iterator it = soundResourceMap.find(soundFile);
+		// if already in the map
+		if (it != soundResourceMap.end()) {
+			Mix_PlayChannel(-1, it->second, 0);
+		}
+	}
+
+
+
 
 	void clearResource()
 	{
+	    // clear image resource
 	    for(auto&& entry : imageResourceMap) {
             SDL_DestroyTexture(entry.second);
+            entry.second = NULL;
+	    }
+	    imageResourceMap.clear();
+
+	    //clear sound resource
+	    for(auto&& entry : soundResourceMap) {
+            Mix_FreeChunk(entry.second);
             entry.second = NULL;
 	    }
 	    imageResourceMap.clear();
@@ -152,9 +196,14 @@ private:
 	~ResourceManager() {}
 
 	/**
-	 * Map to hold loaded resources
+	 * Map to hold loaded image resources
 	 */
 	std::map<std::string, SDL_Texture*> imageResourceMap;
+
+	/**
+	 * Map to hold loaded sound resources
+	 */
+	std::map<std::string, Mix_Chunk*> soundResourceMap;
 };
 
 

@@ -204,6 +204,7 @@ void GameState() {
     if(game.GetFinalScore() != -1) {
         saveScore(game.GetFinalScore(), game.GetFinalTime());
     }
+    Mix_PlayMusic(bg_music, -1);
 	// update and render the game components
 	std::cout << "Game closed\n";
 	// update Screen
@@ -257,15 +258,45 @@ void enforceFPS(int frameStartTime) {
  * Function to load music media
  */
 bool loadMusicMedia() {
-	// TODO : Add code to load music media here
-	return false;
+	bool success = true;
+
+	// load the music file
+	bg_music = Mix_LoadMUS(BG_MUSIC_FILE);
+	if (bg_music == NULL) {
+		printf("bg_music could not be loaded! Error : %s\n", Mix_GetError());
+		success = false;
+	}
+
+	//load sound effects
+	menu_sound = Mix_LoadWAV(MENU_CHANGE_SOUND);
+	if (menu_sound == NULL) {
+		printf("menu_sound could not be loaded! Error : %s\n", Mix_GetError());
+		success = false;
+	}
+	select_sound = Mix_LoadWAV(MENU_SELECT_SOUND);
+	if (select_sound == NULL) {
+		printf("menu_sound could not be loaded! Error : %s\n", Mix_GetError());
+		success = false;
+	}
+
+	if (Mix_PlayingMusic() == 0)
+		Mix_PlayMusic(bg_music, -1);
+
+	return success;
 }
 
 /**
  * Function to close music media resources
  */
 void closeMusicMedia() {
-	// TODO : clear all loaded music media
+	//free sound effects
+	Mix_FreeChunk(menu_sound);
+	menu_sound = NULL;
+	Mix_FreeChunk(select_sound);
+	select_sound = NULL;
+	// free music
+	Mix_FreeMusic(bg_music);
+	bg_music = NULL;
 }
 
 /**
