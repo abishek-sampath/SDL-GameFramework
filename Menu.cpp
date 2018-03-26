@@ -112,29 +112,21 @@ bool Menu::loadMenuLanguage(int lang_type) {
  */
 void Menu::loadMenuTextures() {
 	// Main Menu textures
-	loadFontTexture(stringData->stringTextures[NEW_GAME_INDEX], stringData->stringTexts[NEW_GAME_INDEX], whiteColor,FONT_SIZE_SMALL);
-	loadFontTexture(stringData->stringTextures[LEADERBOARD_INDEX], stringData->stringTexts[LEADERBOARD_INDEX], whiteColor, FONT_SIZE_SMALL);
-	loadFontTexture(stringData->stringTextures[EXIT_MENU_INDEX], stringData->stringTexts[EXIT_MENU_INDEX], whiteColor, FONT_SIZE_SMALL);
-	loadFontTexture(stringData->stringTextures[LANG_MENU_INDEX], stringData->stringTexts[LANG_MENU_INDEX], whiteColor, FONT_SIZE_SMALL);
-	loadFontTexture(stringData->stringTextures[LANG_EN_INDEX], stringData->stringTexts[LANG_EN_INDEX], whiteColor, FONT_SIZE_SMALL);
-	loadFontTexture(stringData->stringTextures[LANG_FR_INDEX], stringData->stringTexts[LANG_FR_INDEX], whiteColor, FONT_SIZE_SMALL);
-	loadFontTexture(stringData->stringTextures[LANG_ES_INDEX], stringData->stringTexts[LANG_ES_INDEX], whiteColor, FONT_SIZE_SMALL);
+	loadFontTexture(stringData->stringTextures[NEW_GAME_INDEX], stringData->stringTexts[NEW_GAME_INDEX], whiteColor,FONT_SIZE_BIG);
+	loadFontTexture(stringData->stringTextures[LEADERBOARD_INDEX], stringData->stringTexts[LEADERBOARD_INDEX], whiteColor, FONT_SIZE_BIG);
+	loadFontTexture(stringData->stringTextures[EXIT_MENU_INDEX], stringData->stringTexts[EXIT_MENU_INDEX], whiteColor, FONT_SIZE_BIG);
+	loadFontTexture(stringData->stringTextures[LANG_MENU_INDEX], stringData->stringTexts[LANG_MENU_INDEX], whiteColor, FONT_SIZE_BIG);
+	loadFontTexture(stringData->stringTextures[LANG_EN_INDEX], stringData->stringTexts[LANG_EN_INDEX], whiteColor, FONT_SIZE_MID);
+	loadFontTexture(stringData->stringTextures[LANG_FR_INDEX], stringData->stringTexts[LANG_FR_INDEX], whiteColor, FONT_SIZE_MID);
+	loadFontTexture(stringData->stringTextures[LANG_ES_INDEX], stringData->stringTexts[LANG_ES_INDEX], whiteColor, FONT_SIZE_MID);
 	// Quit Texture
-	loadFontTexture(stringData->stringTextures[EXIT_Q_INDEX], stringData->stringTexts[EXIT_Q_INDEX], whiteColor, FONT_SIZE_SMALL);
-	// In Game Textures
-	loadFontTexture(stringData->stringTextures[LIVES_INDEX], stringData->stringTexts[LIVES_INDEX], whiteColor, FONT_SIZE_SMALL);
-	loadFontTexture(stringData->stringTextures[SCORE_INDEX], stringData->stringTexts[SCORE_INDEX], whiteColor, FONT_SIZE_SMALL);
-	loadFontTexture(stringData->stringTextures[EXIT_GAME_INDEX], stringData->stringTexts[EXIT_GAME_INDEX], whiteColor, (FONT_SIZE_SMALL - 8));
-	loadFontTexture(stringData->stringTextures[LOAD_LEVEL_INDEX], stringData->stringTexts[LOAD_LEVEL_INDEX], whiteColor, FONT_SIZE_MID);
-	loadFontTexture(stringData->stringTextures[WIN_MSG_INDEX], stringData->stringTexts[WIN_MSG_INDEX], greenColor);
-	loadFontTexture(stringData->stringTextures[LOSE_MSG_INDEX], stringData->stringTexts[LOSE_MSG_INDEX], whiteColor, FONT_SIZE_MID);
-	loadFontTexture(stringData->stringTextures[REVIVE_MSG_INDEX], stringData->stringTexts[REVIVE_MSG_INDEX], whiteColor);
+	loadFontTexture(stringData->stringTextures[EXIT_Q_INDEX], stringData->stringTexts[EXIT_Q_INDEX], whiteColor, FONT_SIZE_BIG);
 
 	// if no new language selected, highlight previous language
 	if (langOptionChanged) {
 		short newLang = stringData->selectedLang + NUM_OF_MENUS - 1;
 		//menuoptions.menuTextures[newLang].setColor(255, 255, 255);
-		loadFontTexture(stringData->stringTextures[newLang], stringData->stringTexts[newLang], greenColor, FONT_SIZE_SMALL);
+		loadFontTexture(stringData->stringTextures[newLang], stringData->stringTexts[newLang], greenColor, FONT_SIZE_MID);
 		langOptionChanged = false;
 	}
 }
@@ -290,12 +282,12 @@ void Menu::SetMenuBackground() {
  * Reset previous menu texture
  */
 void Menu::ResetMenuTexture(short menuOption, SDL_Color *color) {
-	loadFontTexture(stringData->stringTextures[menuOption - 1], stringData->stringTexts[menuOption - 1], color, FONT_SIZE_SMALL);
+	loadFontTexture(stringData->stringTextures[menuOption - 1], stringData->stringTexts[menuOption - 1], color, FONT_SIZE_BIG);
 }
 
 /**
  * Reset previous language texture
  */
 void Menu::ResetLangTexture(short langOption, SDL_Color *color) {
-	loadFontTexture(stringData->stringTextures[langOption + NUM_OF_MENUS - 1], stringData->stringTexts[langOption + NUM_OF_MENUS - 1], color, FONT_SIZE_SMALL);
+	loadFontTexture(stringData->stringTextures[langOption + NUM_OF_MENUS - 1], stringData->stringTexts[langOption + NUM_OF_MENUS - 1], color, FONT_SIZE_MID);
 }
