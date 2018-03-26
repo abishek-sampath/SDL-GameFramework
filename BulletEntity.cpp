@@ -8,16 +8,18 @@ BulletEntity::BulletEntity(SDL_Renderer* renderer, ResourceManager* resourceMana
     collisionHeight = 20;
 
     maxSpeedX = BULLET_MAXSPEED;
+
+    name = BULLET_NAME;
 }
 
 bool BulletEntity::OnLoad(int width, int height)
 {
-    texture = resourceManager->loadImg(BULLET_FIRE_IMG, renderer);
+    texture = resourceManager->loadImg(BULLET_IMG, renderer);
     // load below in OnInit()
     this->width = width;
     this->height = height;
     loadBulletExplosionDimensions(BULLET_EXPLODE_ANIM_FILE);
-    bulletState = BULLET_STATE_FIRE;
+    bulletState = BULLET_STATE_MOVE;
     AnimControl.maxFrames = 1;
 
     return true;
@@ -34,11 +36,12 @@ void BulletEntity::OnLoop()
     }
 
     GEntity::OnLoop();
-    if(bulletState == BULLET_STATE_FIRE && speedX != 0) {
-        texture = resourceManager->loadImg(BULLET_IMG, renderer);
-        bulletState = BULLET_STATE_MOVE;
-    }
-    else if((bulletState == BULLET_STATE_MOVE) &&
+//    if(bulletState == BULLET_STATE_FIRE && speedX != 0) {
+//        texture = resourceManager->loadImg(BULLET_IMG, renderer);
+//        bulletState = BULLET_STATE_MOVE;
+//    }
+//    else
+        if((bulletState == BULLET_STATE_MOVE) &&
             (speedX == 0)) {
         moveLeft = moveRight = false;
         texture = resourceManager->loadImg(bulletExplodeImage, renderer);
@@ -70,6 +73,12 @@ void BulletEntity::OnAnimate()
 
 bool BulletEntity::OnCollision(GEntity* entity)
 {
+    if(bulletState == BULLET_STATE_MOVE) {
+        moveLeft = moveRight = false;
+        maxSpeedX = BULLET_EXPLODE_SPEED;
+        texture = resourceManager->loadImg(bulletExplodeImage, renderer);
+        bulletState = BULLET_STATE_STOP;
+    }
     return true;
 }
 
@@ -137,4 +146,10 @@ bool BulletEntity::loadBulletExplosionDimensions(std::string animFile)
     }
 
     return true;
+}
+
+
+GEntity* BulletEntity::clone() const
+{
+    return new BulletEntity(*this);
 }

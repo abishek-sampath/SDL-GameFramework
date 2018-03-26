@@ -31,6 +31,7 @@ GEntity::GEntity(SDL_Renderer* renderer, ResourceManager* resourceManager)
     collisionWidth = collisionHeight = 0;
 
     canJump = false;
+    onGround = false;
 
     flip = SDL_FLIP_NONE;
 }
@@ -141,7 +142,7 @@ void GEntity::OnRender(std::vector<SDL_Rect> &textureRects)
         SDL_Rect textureRect = textureRects[AnimControl.GetCurrentFrame()];
         TextureUtils::OnDraw(texture, renderer,
                              X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
-                             width, height,
+                             textureRect.w, textureRect.h,
                              &textureRect,
                              flip);
     }
@@ -228,12 +229,14 @@ void GEntity::OnMove(float moveX, float moveY)
 
             if(PosValid((int)(X), (int)(Y + newY))) {
                 Y += newY;
+                onGround = false;
             }
             else {
                 if(moveY > 0) {
                     canJump = true;
                 }
                 speedY = 0;
+                onGround = true;
             }
         }
 
@@ -361,7 +364,7 @@ bool GEntity::PosValidTile(GTile* tile)
 bool GEntity::PosValidEntity(GEntity* entity, int newX, int newY)
 {
     if(this != entity && entity != NULL && entity->dead == false
-       && entity->flags ^ ENTITY_FLAG_MAPONLY
+//       && entity->flags ^ ENTITY_FLAG_MAPONLY
        && entity->Collides(newX + collisionX, newY + collisionY, width - collisionWidth - 1, height - collisionHeight - 1)
             == true) {
 
@@ -387,4 +390,10 @@ bool GEntity::Jump()
 
     speedY = -maxSpeedY;
     return true;
+}
+
+
+GEntity* GEntity::clone() const
+{
+    return new GEntity(*this);
 }

@@ -43,14 +43,23 @@ void CApp::OnKeyDown(SDL_Keycode &sym, Uint16 &mod)
     case SDLK_SPACE:
         player1->Jump();
         break;
-    case SDLK_x:
-    {
-        BulletEntity* bullet = new BulletEntity(renderer, resourceManager);
-        if(bullet->OnLoad(40, 40) == false) {
-            bullet->OnCleanup();
+    case SDLK_RSHIFT:
+        {
+//            EnemyEntity* enemy = (EnemyEntity*)enemyTemplate->clone();
+//            enemy->X = dist(eng, param_type{0, GArea::AreaControl.GetAreaWidth()});
+//            enemy->flags = ENTITY_FLAG_GRAVITY;
+//            GEntity::EntityList.push_back(enemy);
+            LifeUpgradeEntity* life = (LifeUpgradeEntity*)lifeTemplate->clone();
+            //random number
+            //std::uniform_int_distribution<int> dis(0, GArea::AreaControl.GetAreaWidth());
+            life->X = (std::rand() % GArea::AreaControl.GetAreaWidth());
+            life->flags = ENTITY_FLAG_GRAVITY;
+            GEntity::EntityList.push_back(life);
             break;
         }
-        //std::cout << "a " << bullet->X << ", " << bullet->Y << '\n';
+    case SDLK_x:
+    {
+        BulletEntity* bullet = (BulletEntity*)bulletTemplate->clone();
         bullet->flags = ENTITY_FLAG_MAPONLY;
         if(player1->flip == SDL_FLIP_NONE)
         {
@@ -65,19 +74,6 @@ void CApp::OnKeyDown(SDL_Keycode &sym, Uint16 &mod)
         }
         bullet->Y = (player1->Y + 5);
         GEntity::EntityList.push_back(bullet);
-
-//        player2 = new PlayerEntity(renderer, resourceManager);
-//    if(player2->OnLoad(SPRITESHEET,
-//                       64, 64,
-//                       ANIM_1_TEX_W, ANIM_1_TEX_H,
-//                       ANIM_1_FRAMES) == false) {
-//                           std::cout << "bullet making failed\n";
-//                        break;
-//                       }
-//    player2->name = "P1";
-//    player2->X = 300;
-//    GEntity::EntityList.push_back(player2);
-
         break;
     }
     default:

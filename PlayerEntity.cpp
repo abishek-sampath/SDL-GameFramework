@@ -9,6 +9,8 @@ PlayerEntity::PlayerEntity(SDL_Renderer* renderer, ResourceManager* resourceMana
 
     maxSpeedX = P1_MAX_SPEED_X;
     maxSpeedY = P1_MAX_SPEED_Y;
+
+    name = PLAYER_NAME;
 }
 
 
@@ -91,8 +93,13 @@ bool PlayerEntity::OnCollision(GEntity* entity)
 //    } else {
 //        PlayerEntity::Jump();
 //    }
-
-    return true;
+    if(entity->name == BULLET_NAME) {
+        return false;
+    }
+    if(entity->name == LIFE_NAME) {
+        return true;
+    }
+    return false;
 }
 
 

@@ -16,6 +16,7 @@ void CApp::OnCleanup()
         if(!GEntity::EntityList[i])
             continue;
         GEntity::EntityList[i]->OnCleanup();
+        delete(GEntity::EntityList[i]);
     }
     GEntity::EntityList.clear();
 

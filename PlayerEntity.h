@@ -12,6 +12,8 @@ public:
     void OnCleanup();
     void OnAnimate();
     bool OnCollision(GEntity* entity);
+    // clone method
+    //GEntity* clone() const;
     bool Jump();
     // different render options
     void OnRender();

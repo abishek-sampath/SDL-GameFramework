@@ -1,6 +1,9 @@
 #include "CApp.h"
+#include <ctime>
 
-
+//local file methods
+//bool loadFrameDimensions(std::string animFile, std::string &imgFile, std::vector<SDL_Rect> &frameSet,
+//                         ResourceManager* resourceManager, SDL_Renderer* renderer);
 
 bool CApp::OnInit()
 {
@@ -50,7 +53,7 @@ bool CApp::OnInit()
                        ANIM_1_FRAMES) == false) {
                         return false;
                        }
-    player1->name = "P1";
+    player1->name = PLAYER_NAME;
     player1->X = 100;
     GEntity::EntityList.push_back(player1);
     GCamera::CameraControl.targetMode = TARGET_MODE_CENTER;
@@ -59,73 +62,65 @@ bool CApp::OnInit()
 
     // BULLETS
     // Initialize Bullet Images
-    resourceManager->loadImg(BULLET_FIRE_IMG, renderer);
-    resourceManager->loadImg(BULLET_IMG, renderer);
-    // Initialize Bullet explosion rects
+    //resourceManager->loadImg(BULLET_FIRE_IMG, renderer);
+    //resourceManager->loadImg(BULLET_IMG, renderer);
+    bulletTemplate = new BulletEntity(renderer, resourceManager);
+    if(bulletTemplate->OnLoad(40, 40) == false)
+    {
+        bulletTemplate->OnCleanup();
+        return false;
+    }
 
 
-
-    //TEMP SDL RECT FRAMES
-//    std::vector<SDL_Rect> anim_1_frames;
-//    SDL_Rect frame1 = {0, 0, 75, 132};
-//    anim_1_frames.push_back(frame1);
-//    SDL_Rect frame2 = {75, 0, 75, 132};
-//    anim_1_frames.push_back(frame2);
-//    SDL_Rect frame3 = {150, 0, 75, 132};
-//    anim_1_frames.push_back(frame3);
-//    SDL_Rect frame4 = {225, 0, 75, 132};
-//    anim_1_frames.push_back(frame4);
-//    SDL_Rect frame5 = {300, 0, 75, 132};
-//    anim_1_frames.push_back(frame5);
-//    SDL_Rect frame6 = {375, 0, 75, 132};
-//    anim_1_frames.push_back(frame6);
-//    SDL_Rect frame7 = {450, 0, 75, 132};
-//    anim_1_frames.push_back(frame7);
-//    SDL_Rect frame8 = {525, 0, 75, 132};
-//    anim_1_frames.push_back(frame8);
-//    texRectsMap[1] = anim_1_frames;
-//    std::vector<SDL_Rect> anim_2_frames;
-//    frame1 = {0, 0, 64, 64};
-//    anim_2_frames.push_back(frame1);
-//    frame2 = {0, 64, 64, 64};
-//    anim_2_frames.push_back(frame2);
-//    frame3 = {0, 124, 64, 64};
-//    anim_2_frames.push_back(frame3);
-//    frame4 = {0, 192, 64, 64};
-//    anim_2_frames.push_back(frame4);
-//    frame5 = {0, 256, 64, 64};
-//    anim_2_frames.push_back(frame5);
-//    frame6 = {0, 320, 64, 64};
-//    anim_2_frames.push_back(frame6);
-//    frame7 = {0, 384, 64, 64};
-//    anim_2_frames.push_back(frame7);
-//    frame8 = {0, 448, 64, 64};
-//    anim_2_frames.push_back(frame8);
-//    texRectsMap[2] = anim_2_frames;
-
-    // Initialize Entities
-//    Entity1 = new GEntity(renderer, resourceManager);
-//    Entity2 = new GEntity(renderer, resourceManager);
-//    if (Entity1->OnLoad(SPRITESHEET2,
-//                        ANIM_2_TEX_W, ANIM_2_TEX_H,
-//                        anim_1_frames.size()) == false)
-//    {
-//        printf("entity1 failed\n");
-//        return false;
-//    }
-//    if (Entity2->OnLoad(SPRITESHEET,
-//                        ANIM_1_TEX_W, ANIM_1_TEX_H,
-//                        anim_2_frames.size()) == false)
-//    {
-//        printf("entity2 failed\n");
-//        return false;
-//    }
-//    Entity2->X = 200;
-//    GEntity::EntityList.push_back(Entity1);
-//    GEntity::EntityList.push_back(Entity2);
+    // ENEMY
+    enemyTemplate = new EnemyEntity(renderer, resourceManager);
+    if(enemyTemplate->OnLoad(ENEMY_ANIM_FILE, 75, 75) == false) {
+        return false;
+    }
+    enemyTemplate->flags = ENTITY_FLAG_GRAVITY;
 
 
+    // LIFE UPGRADE
+    lifeTemplate = new LifeUpgradeEntity(renderer, resourceManager);
+    if(lifeTemplate->OnLoad(LIFE_ANIM_FILE, 16, 16) == false) {
+        return false;
+    }
+    lifeTemplate->flags = ENTITY_FLAG_GRAVITY;
+
+
+    // initialize for randomness
+    std::srand(std::time(NULL));
 
 
     return true;
 }
+
+
+//bool loadFrameDimensions(std::string animFile, std::string &imgFile, std::vector<SDL_Rect> &frameSet,
+//                         ResourceManager* resourceManager, SDL_Renderer* renderer)
+//{
+//    const char* file = animFile.c_str();
+//    FILE* fileHandler = fopen(file, "r");
+//    if(fileHandler == NULL) {
+//        return false;
+//    }
+//
+//    char tempName[255]="";
+//    fscanf(fileHandler, "%s\n", tempName);
+//    imgFile.assign(tempName);
+//    if(resourceManager->loadImg(imgFile, renderer) == NULL) {
+//        fclose(fileHandler);
+//        return false;
+//    }
+//    int frameSetSize = 0;
+//    fscanf(fileHandler, "%d\n", &frameSetSize);
+//    for(int i=0; i<frameSetSize; i++) {
+//        SDL_Rect rect;
+//        fscanf(fileHandler, "%d %d %d %d", &rect.x, &rect.y, &rect.w, &rect.h);
+//        frameSet.push_back(rect);
+//        fscanf(fileHandler, "\n");
+//    }
+//    fclose(fileHandler);
+//
+//    return true;
+//}

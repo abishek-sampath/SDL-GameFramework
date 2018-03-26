@@ -21,6 +21,8 @@ public:
     void OnCleanup();
     void OnAnimate();
     bool OnCollision(GEntity* entity);
+    // clone method
+    GEntity* clone() const;
     // render options
     void OnRender();
     void OnRender(bool isVertical);
