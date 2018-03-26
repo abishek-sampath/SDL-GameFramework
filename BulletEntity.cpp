@@ -74,6 +74,9 @@ void BulletEntity::OnAnimate()
 bool BulletEntity::OnCollision(GEntity* entity)
 {
     if(bulletState == BULLET_STATE_MOVE) {
+        // play sound
+        resourceManager->playSoundEffect(BULLET_EXPLOSION_SOUND);
+        // change animation
         moveLeft = moveRight = false;
         maxSpeedX = BULLET_EXPLODE_SPEED;
         texture = resourceManager->loadImg(bulletExplodeImage, renderer);

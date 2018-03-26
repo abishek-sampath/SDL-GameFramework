@@ -59,6 +59,12 @@ int CApp::OnExecute() {
 
 
     if(score != -1) {
+        // load the music file
+        gameover_music = Mix_LoadMUS(GAMEOVER_MUSIC_FILE);
+        if (gameover_music != NULL)
+        {
+            Mix_PlayMusic(gameover_music, -1);
+        }
         // START display GameLost
         SDL_RenderClear(renderer);
         SDL_Color	whiteColor = { 0xff, 0xff, 0xff };
