@@ -16,7 +16,7 @@ PlayerEntity::PlayerEntity(SDL_Renderer* renderer, ResourceManager* resourceMana
 }
 
 
-bool PlayerEntity::OnLoad(const char* file, int width, int height, int textureWidth, int textureHeight, int maxFrames)
+bool PlayerEntity::OnLoad(int width, int height, int maxFrames)
 {
     //load health image
     resourceManager->loadImg(PLAYER_HEALTH_IMG, renderer);

@@ -7,7 +7,7 @@ class PlayerEntity : public GEntity
 {
 public:
     PlayerEntity(SDL_Renderer* renderer, ResourceManager* resourceManager);
-    bool OnLoad(const char* file, int width, int height, int textureWidth, int textureHeight, int maxFrames);
+    bool OnLoad(int width, int height, int maxFrames);
     void OnLoop();
     void OnCleanup();
     void OnAnimate();

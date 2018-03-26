@@ -42,14 +42,6 @@ bool GMap::OnLoad(const char* file)
 
 void GMap::OnRender(int mapX, int mapY)
 {
-    if(texture == NULL) {
-        std::cout << "1 Tile Texture Null";
-        return;
-    }
-    int w, h;
-    SDL_QueryTexture(texture, NULL, NULL, &w, &h);
-    int tileSetWidth    = w / TILE_SIZE;
-    //int tileSetHeight   = h / TILE_SIZE;
     int ID = 0;
     for(int y = 0; y < MAP_HEIGHT; y++) {
         for(int x = 0; x < MAP_WIDTH; x++) {
@@ -120,7 +112,8 @@ bool GMap::loadAllProps(char* propFile)
         {
             break;
         }
-        std::string propName(value);
+        std::string propName(IMAGE_DIR);
+        propName.append(value);
         propsResourceMap.insert(std::pair<int, std::string>(key, propName));
         resourceManager->loadImg(propName, renderer);
         fscanf(fileHandler, "\n");
@@ -152,7 +145,8 @@ bool GMap::loadAllProps(char* propFile, int r, int g, int b)
         {
             break;
         }
-        std::string propName(value);
+        std::string propName(IMAGE_DIR);
+        propName.append(value);
         propsResourceMap.insert(std::pair<int, std::string>(key, propName));
         resourceManager->loadImg(propName, renderer, r, g, b);
         fscanf(fileHandler, "\n");

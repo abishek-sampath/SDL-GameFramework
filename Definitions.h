@@ -97,17 +97,17 @@
 /**
  * The name of the English language file
  */
-#define EN_FILE			"assets/en.lang"
+#define EN_FILE			"./assets/langs/en.lang"
 
 /**
  * The name of the French language file
  */
-#define FR_FILE			"assets/fr.lang"
+#define FR_FILE			"./assets/langs/fr.lang"
 
 /**
  * The name of the spanish language file
  */
-#define ES_FILE			"assets/es.lang"
+#define ES_FILE			"./assets/langs/es.lang"
 
 // MENU OPTIONS
 
@@ -260,7 +260,7 @@
 /**
  * The path to the background image
  */
-#define MENU_BG_IMAGE		"./images/WolvenReign.png"
+#define MENU_BG_IMAGE		"./assets/images/WolvenReign.png"
 
 /**
  * Total number of levels
@@ -274,7 +274,7 @@
 /**
  * The path to the font for the game
  */
-#define GAME_FONT_NAME	"assets/advanced_led_board-7.ttf"
+#define GAME_FONT_NAME	"./assets/fonts/advanced_led_board-7.ttf"
 
 /**
  * The size fo big font
@@ -299,19 +299,19 @@
 /**
  * Path to the background music file
  */
-#define BG_MUSIC_FILE		"./sounds/menu_bgm.mp3"
-#define GAME_MUSIC_FILE		"./sounds/game_bgm.mp3"
-#define GAMEOVER_MUSIC_FILE "./sounds/gameover_bgm.mp3"
+#define BG_MUSIC_FILE		"./assets/sounds/menu_bgm.mp3"
+#define GAME_MUSIC_FILE		"./assets/sounds/game_bgm.mp3"
+#define GAMEOVER_MUSIC_FILE "./assets/sounds/gameover_bgm.mp3"
 
 /**
  * Path to the menu change sound
  */
-#define MENU_CHANGE_SOUND	"./sounds/boing.wav"
+#define MENU_CHANGE_SOUND	"./assets/sounds/boing.wav"
 
 /**
  * Path to the menu select sound
  */
-#define MENU_SELECT_SOUND	"./sounds/scratch.wav"
+#define MENU_SELECT_SOUND	"./assets/sounds/scratch.wav"
 
 
 
@@ -367,57 +367,49 @@ bool loadFontTexture(FontTexture &texture, std::string &text, SDL_Color *color, 
 
 
 // images
-#define SPRITESHEET     "images/tilesets/yoshi.png"
-#define ANIM_1_TEX_W    64
-#define ANIM_1_TEX_H    64
-#define ANIM_1_FRAMES   8
 const bool IS_ANIM_1_VERT = true;
-#define SPRITESHEET2    "images/capguy-walk.png"
-#define ANIM_2_TEX_W    75
-#define ANIM_2_TEX_H    132
-#define ANIM_2_FRAMES   8
-const bool IS_ANIM_2_VERT = false;
 
 //ingame player
 #define PLAYER_NAME         "PLAYER1"
 #define NORMAL_ANIM_STR     "normal_anim"
-#define NORMAL_ANIM_FILE    "./other/animations/player.anim"
+#define NORMAL_ANIM_FILE    "./assets/animations/player.anim"
 #define JUMP_ANIM_STR       "jump_anim"
-#define JUMP_ANIM_FILE      "./other/animations/jump.player.anim"
+#define JUMP_ANIM_FILE      "./assets/animations/jump.player.anim"
 #define P1_MAX_SPEED_X        10
 #define P1_MAX_SPEED_Y        15
-#define PLAYER_HEALTH_IMG   "./images/heart.png"
+#define PLAYER_HEALTH_IMG   "./assets/images/heart.png"
 #define PLAYER_MAX_HEALTH   4
-#define PLAYER_HIT_SOUND    "./sounds/player_enemy_hit.wav"
-#define PLAYER_JUMP_SOUND   "./sounds/player_jump.wav"
+#define PLAYER_HIT_SOUND    "./assets/sounds/player_enemy_hit.wav"
+#define PLAYER_JUMP_SOUND   "./assets/sounds/player_jump.wav"
 
 // bullet
 #define BULLET_NAME         "BULLET"
-#define BULLET_FIRE_IMG     "./images/bullet_fire.png"
-#define BULLET_FIRE_SOUND   "./sounds/gun_shot.wav"
-#define BULLET_IMG          "./images/bullet.png"
+#define BULLET_FIRE_IMG     "./assets/images/bullet_fire.png"
+#define BULLET_FIRE_SOUND   "./assets/sounds/gun_shot.wav"
+#define BULLET_IMG          "./assets/images/bullet.png"
 #define BULLET_MAXSPEED             20
 #define BULLET_EXPLODE_SPEED        5
-#define BULLET_EXPLODE_ANIM_FILE    "./other/animations/bullet_explode.anim"
-#define BULLET_EXPLOSION_SOUND      "./sounds/explosion.wav"
+#define BULLET_EXPLODE_ANIM_FILE    "./assets/animations/bullet_explode.anim"
+#define BULLET_EXPLOSION_SOUND      "./assets/sounds/explosion.wav"
 
 // enemy
 #define ENEMY_NAME          "ENEMY"
-#define ENEMY_ANIM_FILE     "./other/animations/enemy.anim"
+#define ENEMY_ANIM_FILE     "./assets/animations/enemy.anim"
 #define ENEMY_MAXSPEEDX      5
 #define ENEMY_MAXSPEEDY      20
 
 // life upgrade
 #define LIFE_NAME           "LIFE"
-#define LIFE_ANIM_FILE      "./other/animations/life_upgrade.anim"
-#define LIFE_USED_SOUND	    "./sounds/health_pickup.wav"
+#define LIFE_ANIM_FILE      "./assets/animations/life_upgrade.anim"
+#define LIFE_USED_SOUND	    "./assets/sounds/health_pickup.wav"
 
 // Areas, Maps and Tiles
-#define AREA_1      "./areas/1.area"
-#define AREA_2      "./areas/testing_mario.area"
+#define AREA_1      "./assets/areas/1.area"
+#define AREA_2      "./assets/areas/testing.area"
 #define MAP_WIDTH   30
 #define MAP_HEIGHT  15
 #define TILE_SIZE   54
+#define IMAGE_DIR   "./assets/images/"
 
 
 // game start instruction

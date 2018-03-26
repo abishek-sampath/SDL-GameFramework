@@ -19,13 +19,6 @@ bool GArea::OnLoad(const char* file)
         return false;
     }
 
-    char tileSetFile[255]="";
-    fscanf(fileHandler, "%s\n", tileSetFile);
-    if((texture = resourceManager->loadImg(tileSetFile, renderer)) == NULL) {
-        fclose(fileHandler);
-        return false;
-    }
-
     fscanf(fileHandler, "%d ", &areaSizeX);
     fscanf(fileHandler, "%d \n", &areaSizeY);
     for(int x = 0; x < areaSizeX; x++) {
@@ -37,7 +30,6 @@ bool GArea::OnLoad(const char* file)
                 fclose(fileHandler);
                 return false;
             }
-            tempMap.texture = texture;
             mapList.push_back(tempMap);
         }
         fscanf(fileHandler, "\n");

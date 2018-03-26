@@ -34,11 +34,10 @@ private:
     SDL_Renderer* renderer;
 
     PlayerEntity* player1 = NULL;
-    PlayerEntity* player2 = NULL;
-
     BulletEntity* bulletTemplate = NULL;
     EnemyEntity* enemyTemplate = NULL;
     LifeUpgradeEntity* lifeTemplate = NULL;
+
     TTF_Font* font = NULL;
     SDL_Color	whiteColor = { 0xff, 0xff, 0xff };
     /**
