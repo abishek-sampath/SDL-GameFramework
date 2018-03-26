@@ -70,14 +70,17 @@
 	"CEntity.h"
 	"TextureUtils.h"
 
-1521436929 source:g:\my works\gamedev\sdl\sdl-gameframework\capp.cpp
+1522049145 source:g:\my works\gamedev\sdl\sdl-gameframework\capp.cpp
 	"CApp.h"
 
-1521967264 g:\my works\gamedev\sdl\sdl-gameframework\capp.h
+1522050801 g:\my works\gamedev\sdl\sdl-gameframework\capp.h
 	<SDL.h>
 	<iostream>
 	<unordered_map>
 	<random>
+	<stdio.h>
+	<string>
+	<sstream>
 	"GEvent.h"
 	"GAnimation.h"
 	"GEntity.h"
@@ -102,38 +105,45 @@
 	"CAnimation.h"
 	"ResourceManager.h"
 
-1521765931 g:\my works\gamedev\sdl\sdl-gameframework\resourcemanager.h
+1522016268 g:\my works\gamedev\sdl\sdl-gameframework\resourcemanager.h
 	<SDL2/SDL.h>
 	<SDL.h>
 	<SDL_image.h>
 	<string>
 	<map>
 	<iostream>
+	"Definitions.h"
 
 1521942302 g:\my works\gamedev\sdl\sdl-gameframework\textureutils.h
 	<SDL.h>
 	"ResourceManager.h"
 
-1521961657 g:\my works\gamedev\sdl\sdl-gameframework\definitions.h
+1522034664 g:\my works\gamedev\sdl\sdl-gameframework\definitions.h
 	<iostream>
+	<string>
+	<stack>
+	<fstream>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+	"FontTexture.h"
 
-1521936289 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oncleanup.cpp
+1522027687 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oncleanup.cpp
 	"CApp.h"
 
-1521967455 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onevent.cpp
+1522030669 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onevent.cpp
 	"CApp.h"
 
-1521967522 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oninit.cpp
+1522028828 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oninit.cpp
 	"CApp.h"
 	<ctime>
 
-1521942149 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onloop.cpp
+1522050692 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onloop.cpp
 	"CApp.h"
 
-1521532992 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onrender.cpp
+1522030177 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onrender.cpp
 	"CApp.h"
-	<string>
-	<iostream>
 
 1521433902 source:g:\my works\gamedev\sdl\sdl-gameframework\centity.cpp
 	"CEntity.h"
@@ -170,13 +180,13 @@
 1521535006 source:g:\my works\gamedev\sdl\sdl-gameframework\gcamera.cpp
 	"GCamera.h"
 
-1521768516 source:g:\my works\gamedev\sdl\sdl-gameframework\gmap.cpp
+1522010272 source:g:\my works\gamedev\sdl\sdl-gameframework\gmap.cpp
 	"GMap.h"
 
 1521419652 source:g:\my works\gamedev\sdl\sdl-gameframework\gtile.cpp
 	"GTile.h"
 
-1521968021 source:g:\my works\gamedev\sdl\sdl-gameframework\garea.cpp
+1522011558 source:g:\my works\gamedev\sdl\sdl-gameframework\garea.cpp
 	"GArea.h"
 	<string>
 
@@ -198,7 +208,7 @@
 1521530884 g:\my works\gamedev\sdl\sdl-gameframework\gfps.h
 	<SDL.h>
 
-1521947434 g:\my works\gamedev\sdl\sdl-gameframework\playerentity.h
+1522027219 g:\my works\gamedev\sdl\sdl-gameframework\playerentity.h
 	"GEntity.h"
 
 1521850694 source:g:\my works\gamedev\sdl\sdl-gameframework\ganimation.cpp
@@ -210,7 +220,7 @@
 1521531013 source:g:\my works\gamedev\sdl\sdl-gameframework\gfps.cpp
 	"GFPS.h"
 
-1521966465 source:g:\my works\gamedev\sdl\sdl-gameframework\playerentity.cpp
+1522028511 source:g:\my works\gamedev\sdl\sdl-gameframework\playerentity.cpp
 	"PlayerEntity.h"
 
 1521945651 source:g:\my works\gamedev\sdl\sdl-gameframework\gentity.cpp
@@ -220,23 +230,59 @@
 1521759447 source:g:\my works\gamedev\sdl\sdl-gameframework\gentitycollision.cpp
 	"GEntity.h"
 
-1521961166 source:g:\my works\gamedev\sdl\sdl-gameframework\bulletentity.cpp
+1522010272 source:g:\my works\gamedev\sdl\sdl-gameframework\bulletentity.cpp
 	"BulletEntity.h"
 	<exception>
 
 1521960696 g:\my works\gamedev\sdl\sdl-gameframework\bulletentity.h
 	"GEntity.h"
 
-1521967942 source:g:\my works\gamedev\sdl\sdl-gameframework\lifeupgradeentity.cpp
+1522010272 source:g:\my works\gamedev\sdl\sdl-gameframework\lifeupgradeentity.cpp
 	"LifeUpgradeEntity.h"
 
-1521945852 source:g:\my works\gamedev\sdl\sdl-gameframework\enemyentity.cpp
+1522022025 source:g:\my works\gamedev\sdl\sdl-gameframework\enemyentity.cpp
 	"EnemyEntity.h"
 	<random>
 
 1521945691 g:\my works\gamedev\sdl\sdl-gameframework\enemyentity.h
 	"GEntity.h"
 
-1521965956 g:\my works\gamedev\sdl\sdl-gameframework\lifeupgradeentity.h
+1522023584 g:\my works\gamedev\sdl\sdl-gameframework\lifeupgradeentity.h
 	"GEntity.h"
+
+1522028460 g:\my works\gamedev\sdl\sdl-gameframework\fonttexture.h
+	<SDL.h>
+	<SDL_ttf.h>
+	<string>
+
+1522008245 source:g:\my works\gamedev\sdl\sdl-gameframework\exit.cpp
+	"Exit.h"
+
+1522007990 g:\my works\gamedev\sdl\sdl-gameframework\exit.h
+	"Definitions.h"
+
+1522028442 source:g:\my works\gamedev\sdl\sdl-gameframework\fonttexture.cpp
+	"FontTexture.h"
+
+1522034703 source:g:\my works\gamedev\sdl\sdl-gameframework\main.cpp
+	"main.h"
+
+1522034657 g:\my works\gamedev\sdl\sdl-gameframework\main.h
+	"Menu.h"
+	"ScoreBoard.h"
+	"CApp.h"
+	"Exit.h"
+	"Definitions.h"
+
+1522009627 g:\my works\gamedev\sdl\sdl-gameframework\menu.h
+	"Definitions.h"
+
+1522011424 source:g:\my works\gamedev\sdl\sdl-gameframework\menu.cpp
+	"Menu.h"
+
+1522034603 source:g:\my works\gamedev\sdl\sdl-gameframework\scoreboard.cpp
+	"ScoreBoard.h"
+
+1522034517 g:\my works\gamedev\sdl\sdl-gameframework\scoreboard.h
+	"Definitions.h"
 

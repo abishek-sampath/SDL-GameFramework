@@ -51,6 +51,10 @@
 		<Unit filename="Definitions.h" />
 		<Unit filename="EnemyEntity.cpp" />
 		<Unit filename="EnemyEntity.h" />
+		<Unit filename="Exit.cpp" />
+		<Unit filename="Exit.h" />
+		<Unit filename="FontTexture.cpp" />
+		<Unit filename="FontTexture.h" />
 		<Unit filename="GAnimation.cpp" />
 		<Unit filename="GAnimation.h" />
 		<Unit filename="GArea.cpp" />
@@ -70,10 +74,15 @@
 		<Unit filename="GTile.h" />
 		<Unit filename="LifeUpgradeEntity.cpp" />
 		<Unit filename="LifeUpgradeEntity.h" />
+		<Unit filename="Main.cpp" />
+		<Unit filename="Main.h" />
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.h" />
 		<Unit filename="PlayerEntity.cpp" />
 		<Unit filename="PlayerEntity.h" />
 		<Unit filename="ResourceManager.h" />
-		<Unit filename="TempTest.cpp" />
+		<Unit filename="ScoreBoard.cpp" />
+		<Unit filename="ScoreBoard.h" />
 		<Unit filename="TextureUtils.h" />
 		<Extensions>
 			<code_completion />
