@@ -299,32 +299,20 @@
 /**
  * Path to the background music file
  */
-#define BG_MUSIC_FILE		"assets/within.mp3"
+#define BG_MUSIC_FILE		"./sounds/menu_bgm.mp3"
+#define GAME_MUSIC_FILE		"./sounds/game_bgm.mp3"
+#define GAMEOVER_MUSIC_FILE "./sounds/gameover_bgm.mp3"
 
 /**
  * Path to the menu change sound
  */
-#define MENU_CHANGE_SOUND	"assets/boing.wav"
+#define MENU_CHANGE_SOUND	"./sounds/boing.wav"
 
 /**
  * Path to the menu select sound
  */
-#define MENU_SELECT_SOUND	"assets/scratch.wav"
+#define MENU_SELECT_SOUND	"./sounds/scratch.wav"
 
-/**
- * Path to the brick crack low volume sound
- */
-#define BRICK_CRACK_LOW		"assets/Bite.wav"
-
-/**
- * Path to the brick crack high volume sound
- */
-#define BRICK_CRACK_HIGH	"assets/Smashing.wav"
-
-/**
- * Path to the paddle ball hitting sound
- */
-#define PADDLE_BALL_HIT		"assets/Racquet.wav"
 
 
 
@@ -400,14 +388,18 @@ const bool IS_ANIM_2_VERT = false;
 #define P1_MAX_SPEED_Y        15
 #define PLAYER_HEALTH_IMG   "./images/heart.png"
 #define PLAYER_MAX_HEALTH   4
+#define PLAYER_HIT_SOUND    "./sounds/player_enemy_hit.wav"
+#define PLAYER_JUMP_SOUND   "./sounds/player_jump.wav"
 
 // bullet
 #define BULLET_NAME         "BULLET"
 #define BULLET_FIRE_IMG     "./images/bullet_fire.png"
+#define BULLET_FIRE_SOUND   "./sounds/gun_shot.wav"
 #define BULLET_IMG          "./images/bullet.png"
-#define BULLET_MAXSPEED     20
-#define BULLET_EXPLODE_SPEED     5
+#define BULLET_MAXSPEED             20
+#define BULLET_EXPLODE_SPEED        5
 #define BULLET_EXPLODE_ANIM_FILE    "./other/animations/bullet_explode.anim"
+#define BULLET_EXPLOSION_SOUND      "./sounds/explosion.wav"
 
 // enemy
 #define ENEMY_NAME          "ENEMY"
@@ -418,6 +410,7 @@ const bool IS_ANIM_2_VERT = false;
 // life upgrade
 #define LIFE_NAME           "LIFE"
 #define LIFE_ANIM_FILE      "./other/animations/life_upgrade.anim"
+#define LIFE_USED_SOUND	    "./sounds/health_pickup.wav"
 
 // Areas, Maps and Tiles
 #define AREA_1      "./areas/1.area"

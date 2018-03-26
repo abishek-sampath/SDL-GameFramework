@@ -9,6 +9,12 @@ void CApp::OnCleanup()
     TTF_CloseFont(font);
     font = NULL;
 
+    // free music
+	Mix_FreeMusic(game_music);
+	game_music = NULL;
+	Mix_FreeMusic(gameover_music);
+	gameover_music = NULL;
+
     GArea::AreaControl.OnCleanup();
 
     // cleanup resource manager

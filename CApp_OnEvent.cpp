@@ -32,6 +32,8 @@ void CApp::OnKeyDown(SDL_Keycode &sym, Uint16 &mod)
         break;
     case SDLK_SPACE:
         player1->Jump();
+        // play sound
+        resourceManager->playSoundEffect(PLAYER_JUMP_SOUND);
         //GCamera::CameraControl.OnMove(0, -15);
         break;
     case SDLK_DOWN:
@@ -61,6 +63,8 @@ void CApp::OnKeyDown(SDL_Keycode &sym, Uint16 &mod)
         }
         bullet->Y = (player1->Y + 5);
         GEntity::EntityList.push_back(bullet);
+        // play sound
+        resourceManager->playSoundEffect(BULLET_FIRE_SOUND);
         break;
     }
     default:

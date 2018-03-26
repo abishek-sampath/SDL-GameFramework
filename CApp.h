@@ -41,6 +41,11 @@ private:
     LifeUpgradeEntity* lifeTemplate = NULL;
     TTF_Font* font = NULL;
     SDL_Color	whiteColor = { 0xff, 0xff, 0xff };
+    /**
+    * Points to the background music file
+    */
+    Mix_Music*	game_music = NULL;
+    Mix_Music*	gameover_music = NULL;
 
 
 private:
@@ -88,13 +93,13 @@ public:
 
 // enemy spawning
 private:
-    int enemyTimeDelay = 10;
-    int enemyWaveDelay = 180;
+    int enemyTimeDelay = 9;
+    int enemyWaveDelay = 30;
     // defined in init()
     int maxDistFromPlayer = 0;
     bool enemyGenerated = false;
     int timeGenerated;
-    int enemiesPerWave = 8;
+    int enemiesPerWave = 4;
     int createdEnemiesPerWaveSoFar = 0;
 // enemy spawning
 public:

@@ -94,21 +94,6 @@ Mix_Chunk*	menu_sound = NULL;
  */
 Mix_Chunk*	select_sound = NULL;
 
-/**
- * Points to the crack low volume sound
- */
-Mix_Chunk*	crack_low_sound = NULL;
-
-/**
- * Points to the crack high volume sound
- */
-Mix_Chunk*	crack_high_sound = NULL;
-
-/**
- * Points to the paddle hit sound
- */
-Mix_Chunk*	paddle_hit_sound = NULL;
-
 
 // Global Game Functions //
 

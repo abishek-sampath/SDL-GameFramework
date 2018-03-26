@@ -134,6 +134,16 @@ bool CApp::OnInit()
 
 
     beginTime = SDL_GetTicks();
+    // load the music file
+    resourceManager->loadSoundEffect(BULLET_EXPLOSION_SOUND);
+    resourceManager->loadSoundEffect(BULLET_FIRE_SOUND);
+    resourceManager->loadSoundEffect(LIFE_USED_SOUND);
+    resourceManager->loadSoundEffect(PLAYER_HIT_SOUND);
+    resourceManager->loadSoundEffect(PLAYER_JUMP_SOUND);
+	game_music = Mix_LoadMUS(GAME_MUSIC_FILE);
+	if (game_music != NULL) {
+        Mix_PlayMusic(game_music, -1);
+	}
 
     return true;
 }
