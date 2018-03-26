@@ -7,35 +7,45 @@
 
 bool CApp::OnInit()
 {
-    if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
-    {
-        printf("Init failed\n");
-        return false;
-    }
+//    if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
+//    {
+//        printf("Init failed\n");
+//        return false;
+//    }
+//
+//    //create window
+//    window = SDL_CreateWindow(TITLE,
+//                              SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+//                              SCREEN_WIDTH, SCREEN_HEIGHT,
+//                              SDL_WINDOW_SHOWN);
+//    if (window == NULL)
+//    {
+//        printf("window creation failed\n");
+//        return false;
+//    }
+//
+//    //create v-synced rendered
+//    renderer = SDL_CreateRenderer(window, -1,
+//                                  SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+//    if (renderer == NULL)
+//    {
+//        printf("renderer init failed\n");
+//        return false;
+//    }
+//    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+//
 
-    //create window
-    window = SDL_CreateWindow(TITLE,
-                              SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                              SCREEN_WIDTH, SCREEN_HEIGHT,
-                              SDL_WINDOW_SHOWN);
-    if (window == NULL)
-    {
-        printf("window creation failed\n");
-        return false;
-    }
 
-    //create v-synced rendered
-    renderer = SDL_CreateRenderer(window, -1,
-                                  SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (renderer == NULL)
-    {
-        printf("renderer init failed\n");
-        return false;
-    }
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
-    // Initialize resource manager
-    resourceManager = ResourceManager::instance(renderer);
+    // START display Instructions
+    SDL_RenderClear(renderer);
+    FontTexture instTitleTexture;
+    FontTexture instTexture;
+    resourceManager->loadFontTexture(instTitleTexture, GAME_INST_TITLE, &whiteColor, FONT_SIZE_BIG);
+    resourceManager->loadFontTexture(instTexture, GAME_INST, &whiteColor, FONT_SIZE_SMALL, (SCREEN_WIDTH * 0.6));
+    instTitleTexture.render(renderer, ((SCREEN_WIDTH / 2) - (instTitleTexture.getWidth() / 2)), (SCREEN_HEIGHT * 0.2));
+    instTexture.render(renderer, (SCREEN_WIDTH * 0.15), (SCREEN_HEIGHT * 0.4));
+    SDL_RenderPresent(renderer);
 
     // Initialize Area with renderer and resource manager
     GArea::AreaControl.renderer = renderer;
@@ -43,6 +53,9 @@ bool CApp::OnInit()
     if(GArea::AreaControl.OnLoad(AREA_2) == false) {
         return false;
     }
+
+    // load score font
+    font = TTF_OpenFont(GAME_FONT_NAME, FONT_SIZE_SMALL);
 
     // Initialize players
     player1 = new PlayerEntity(renderer, resourceManager);
@@ -91,6 +104,37 @@ bool CApp::OnInit()
     // initialize for randomness
     std::srand(std::time(NULL));
 
+
+
+    // STOP display Instructions
+    FontTexture startGameTexture;
+    resourceManager->loadFontTexture(startGameTexture, START_GAME_INST, &whiteColor, FONT_SIZE_MID);
+    startGameTexture.render(renderer, ((SCREEN_WIDTH / 2) - (startGameTexture.getWidth() / 2)), (SCREEN_HEIGHT * 0.9));
+    SDL_RenderPresent(renderer);
+    bool startGame = false;
+    SDL_Event e;
+    // remove events during delay
+	SDL_PumpEvents();
+    SDL_FlushEvent(SDL_KEYDOWN | SDL_QUIT);
+    while(!startGame && SDL_WaitEvent(&e)) {
+        if(e.type == SDL_QUIT) {
+            return false;
+        }
+
+        if(e.type == SDL_KEYDOWN) {
+            if(e.key.keysym.sym == SDLK_RETURN || e.key.keysym.sym == SDLK_RETURN2) {
+                startGame = true;
+                std::cout << "entering\n";
+            }
+            else if(e.key.keysym.sym == SDLK_ESCAPE) {
+                return false;
+            }
+        }
+    }
+
+
+
+    beginTime = SDL_GetTicks();
 
     return true;
 }
