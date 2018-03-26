@@ -70,10 +70,10 @@
 	"CEntity.h"
 	"TextureUtils.h"
 
-1522049145 source:g:\my works\gamedev\sdl\sdl-gameframework\capp.cpp
+1522053290 source:g:\my works\gamedev\sdl\sdl-gameframework\capp.cpp
 	"CApp.h"
 
-1522050801 g:\my works\gamedev\sdl\sdl-gameframework\capp.h
+1522052495 g:\my works\gamedev\sdl\sdl-gameframework\capp.h
 	<SDL.h>
 	<iostream>
 	<unordered_map>
@@ -118,7 +118,7 @@
 	<SDL.h>
 	"ResourceManager.h"
 
-1522034664 g:\my works\gamedev\sdl\sdl-gameframework\definitions.h
+1522055532 g:\my works\gamedev\sdl\sdl-gameframework\definitions.h
 	<iostream>
 	<string>
 	<stack>
@@ -135,7 +135,7 @@
 1522030669 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_onevent.cpp
 	"CApp.h"
 
-1522028828 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oninit.cpp
+1522052418 source:g:\my works\gamedev\sdl\sdl-gameframework\capp_oninit.cpp
 	"CApp.h"
 	<ctime>
 
@@ -264,10 +264,10 @@
 1522028442 source:g:\my works\gamedev\sdl\sdl-gameframework\fonttexture.cpp
 	"FontTexture.h"
 
-1522034703 source:g:\my works\gamedev\sdl\sdl-gameframework\main.cpp
+1522053726 source:g:\my works\gamedev\sdl\sdl-gameframework\main.cpp
 	"main.h"
 
-1522034657 g:\my works\gamedev\sdl\sdl-gameframework\main.h
+1522052476 g:\my works\gamedev\sdl\sdl-gameframework\main.h
 	"Menu.h"
 	"ScoreBoard.h"
 	"CApp.h"
@@ -277,12 +277,14 @@
 1522009627 g:\my works\gamedev\sdl\sdl-gameframework\menu.h
 	"Definitions.h"
 
-1522011424 source:g:\my works\gamedev\sdl\sdl-gameframework\menu.cpp
+1522054060 source:g:\my works\gamedev\sdl\sdl-gameframework\menu.cpp
 	"Menu.h"
 
-1522034603 source:g:\my works\gamedev\sdl\sdl-gameframework\scoreboard.cpp
+1522054405 source:g:\my works\gamedev\sdl\sdl-gameframework\scoreboard.cpp
 	"ScoreBoard.h"
 
-1522034517 g:\my works\gamedev\sdl\sdl-gameframework\scoreboard.h
+1522053087 g:\my works\gamedev\sdl\sdl-gameframework\scoreboard.h
+	<sstream>
 	"Definitions.h"
+	"ResourceManager.h"
 
