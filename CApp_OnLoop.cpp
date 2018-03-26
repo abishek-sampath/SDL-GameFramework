@@ -1,16 +1,48 @@
 #include "CApp.h"
 
-//361
 
 void CApp::OnLoop()
 {
-    // clear renderer foe next loop
+    // exit if player not alive
+    if(player1->dead) {
+        running = false;
+        return;
+    }
+
+
+    //get current time
+    Uint32 timePassed = SDL_GetTicks() - beginTime;
+    int secs    = timePassed / 1000;
+
+    int mins    = secs / 60;
+    int hours   = mins / 60;
+    timeText.str("");
+    if(hours > 0)
+        timeText << hours << ":";
+    if(mins > 0)
+        timeText << (mins % 60) << ":";
+    if(secs > 0)
+        timeText << (secs % 60);
+
+
+    // spawn health packs if health is low
+    GenerateLifePack(secs);
+
+
+    // spawn Enemies and Waves randomly
+    GenerateEnemyEntity(secs);
+    GenerateWaveOfEnemies(secs);
+
+
+    // clear renderer for next loop
     SDL_RenderClear(renderer);
 
     for(unsigned int i=0; i < GEntity::EntityList.size(); i++) {
         if(!GEntity::EntityList[i])
             continue;
         if(GEntity::EntityList[i]->dead) {
+            if(GEntity::EntityList[i]->name == ENEMY_NAME)
+                score++;
             GEntity::EntityList[i]->OnCleanup();
             //delete(GEntity::EntityList[i]);
             GEntity::EntityList.erase(GEntity::EntityList.begin() + i);
@@ -40,6 +72,116 @@ void CApp::OnLoop()
 }
 
 
+
+
+void CApp::GenerateLifePack(int currTime)
+{
+    if(generateLives == true && (currTime % 20 == 0)) {
+        numb_lives_to_gen++;
+        generateLives = false;
+    }
+    if(currTime % 20 != 0) {
+        generateLives = true;
+    }
+    if(player1->health == PLAYER_MAX_HEALTH) {
+        return;
+    }
+    if(player1->health == 1 && numb_lives_to_gen > 0 && generateLives) {
+        //int init_x = 0;
+        //int final_x = GArea::AreaControl.GetAreaWidth() / numb_lives_to_gen;
+        int temp = numb_lives_to_gen;
+        for(int i = 1; i<= temp && i < 4; i++)
+        {
+            //int health_pos = init_x + rand() % (final_x * i - init_x + 1);
+            int health_pos = rand() % (GArea::AreaControl.GetAreaWidth());
+
+            LifeUpgradeEntity* life = (LifeUpgradeEntity*)lifeTemplate->clone();
+            life->X = health_pos;
+            life->flags = ENTITY_FLAG_GRAVITY;
+            GEntity::EntityList.push_back(life);
+
+            //init_x = final_x * i;
+            numb_lives_to_gen--;
+        }
+
+        generateLives = false;
+    }
+}
+
+
+
+void CApp::GenerateWaveOfEnemies(int currTime)
+{
+    int widthOfScreen = GArea::AreaControl.GetAreaWidth();
+    int maxDistFromPlayer = widthOfScreen / 4;
+    int playerPositionX = player1->X;
+
+    if ((currTime % enemyWaveDelay == 0) && (enemyGenerated == false))
+    {
+        int newEnemyPosX = rand() % (playerPositionX + maxDistFromPlayer) + (playerPositionX - maxDistFromPlayer);
+        if (playerPositionX - maxDistFromPlayer < 0)
+        {
+            newEnemyPosX = rand() % maxDistFromPlayer;
+        }
+        if (playerPositionX + maxDistFromPlayer > widthOfScreen)
+        {
+            newEnemyPosX = rand() % (widthOfScreen - (playerPositionX - maxDistFromPlayer)) + (playerPositionX - maxDistFromPlayer);
+        }
+
+        //int newEnemyPosY = rand() % heightOfScreen;
+
+        // CALL FUNCTION TO GENERATE ENEMY HERE
+        EnemyEntity* enemy = (EnemyEntity*)enemyTemplate->clone();
+        enemy->X = newEnemyPosX;
+        enemy->flags = ENTITY_FLAG_GRAVITY;
+        GEntity::EntityList.push_back(enemy);
+
+        if (++createdEnemiesPerWaveSoFar == enemiesPerWave)
+        {
+            enemyGenerated = true;
+            timeGenerated = currTime;
+            createdEnemiesPerWaveSoFar = 0;
+            enemiesPerWave += 2;
+        }
+    }
+    if ((currTime == timeGenerated + 1) && (enemyGenerated == true))
+        enemyGenerated = false;
+}
+
+
+
+void CApp::GenerateEnemyEntity(int currTime)
+{
+    int widthOfScreen = GArea::AreaControl.GetAreaWidth();
+    int maxDistFromPlayer = widthOfScreen / 4;
+    int playerPositionX = player1->X;
+
+    if ((currTime % enemyTimeDelay == 0) && (enemyGenerated == false))
+    {
+        int newEnemyPosX = rand() % (playerPositionX + maxDistFromPlayer) + (playerPositionX - maxDistFromPlayer);
+        if (playerPositionX - maxDistFromPlayer < 0)
+        {
+            newEnemyPosX = rand() % maxDistFromPlayer;
+        }
+        if (playerPositionX + maxDistFromPlayer > widthOfScreen)
+        {
+            newEnemyPosX = rand() % (widthOfScreen - (playerPositionX - maxDistFromPlayer)) + (playerPositionX - maxDistFromPlayer);
+        }
+
+        //int newEnemyPosY = rand() % heightOfScreen;
+
+        // CALL FUNCTION TO GENERATE ENEMY HERE
+        EnemyEntity* enemy = (EnemyEntity*)enemyTemplate->clone();
+        enemy->X = newEnemyPosX;
+        enemy->flags = ENTITY_FLAG_GRAVITY;
+        GEntity::EntityList.push_back(enemy);
+
+        enemyGenerated = true;
+        timeGenerated = currTime;
+    }
+    if ((currTime == timeGenerated + 1) && (enemyGenerated == true))
+        enemyGenerated = false;
+}
 
 
 
