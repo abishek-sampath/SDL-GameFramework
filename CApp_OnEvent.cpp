@@ -30,7 +30,8 @@ void CApp::OnKeyDown(SDL_Keycode &sym, Uint16 &mod)
         player1->flip = SDL_FLIP_NONE;
         //GCamera::CameraControl.OnMove(15, 0);
         break;
-    case SDLK_UP:
+    case SDLK_SPACE:
+        player1->Jump();
         //GCamera::CameraControl.OnMove(0, -15);
         break;
     case SDLK_DOWN:
@@ -38,30 +39,11 @@ void CApp::OnKeyDown(SDL_Keycode &sym, Uint16 &mod)
         break;
     case SDLK_LSHIFT:
         player1->maxSpeedX = (P1_MAX_SPEED_X * 1.5);
-        player1->maxSpeedY = (P1_MAX_SPEED_Y * 1.5);
+        player1->maxSpeedY = (P1_MAX_SPEED_Y * 1.2);
         break;
     case SDLK_DELETE:
         player1->health -= 1;
         break;
-    case SDLK_SPACE:
-        player1->Jump();
-        break;
-    case SDLK_RSHIFT:
-        {
-//            random number;
-//            std::uniform_int_distribution<int> dis(0, GArea::AreaControl.GetAreaWidth());
-
-            EnemyEntity* enemy = (EnemyEntity*)enemyTemplate->clone();
-            enemy->X = (std::rand() % GArea::AreaControl.GetAreaWidth());
-            enemy->flags = ENTITY_FLAG_GRAVITY;
-            GEntity::EntityList.push_back(enemy);
-
-//            LifeUpgradeEntity* life = (LifeUpgradeEntity*)lifeTemplate->clone();
-//            life->X = (std::rand() % GArea::AreaControl.GetAreaWidth());
-//            life->flags = ENTITY_FLAG_GRAVITY;
-//            GEntity::EntityList.push_back(life);
-            break;
-        }
     case SDLK_x:
     {
         BulletEntity* bullet = (BulletEntity*)bulletTemplate->clone();
