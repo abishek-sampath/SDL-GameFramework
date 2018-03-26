@@ -15,8 +15,8 @@
 
 
 // window
-#define SCREEN_WIDTH    640
-#define SCREEN_HEIGHT   450
+#define SCREEN_WIDTH    1440
+#define SCREEN_HEIGHT   810
 #define TITLE           "SDL Trials"
 
 /**
