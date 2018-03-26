@@ -28,6 +28,10 @@ private:
     std::vector<SDL_Rect>* currentFrameSet;
     std::map<std::string, std::string> frameImages;
     std::map<std::string, std::vector<SDL_Rect>> frameSet;
+
+public:
+    int health;
+    bool knockback;
 };
 
 #endif // PLAYERENTITY_H_INCLUDED
