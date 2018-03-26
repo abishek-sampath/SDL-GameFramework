@@ -23,13 +23,13 @@ FontTexture::~FontTexture()
 /**
  * Creates image from font string
  */
-bool FontTexture::loadFromRenderedText(SDL_Renderer* renderer, std::string &textureText, SDL_Color &textColor, TTF_Font* font)
+bool FontTexture::loadFromRenderedText(SDL_Renderer* renderer, std::string textureText, SDL_Color &textColor, TTF_Font* font, int wrapLength)
 {
 	//Get rid of preexisting texture
 	freeFontTexture();
 
 	//Render text surface
-	SDL_Surface* textSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);
+	SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, textureText.c_str(), textColor, wrapLength);
 	if (textSurface == NULL)
 	{
 		printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());

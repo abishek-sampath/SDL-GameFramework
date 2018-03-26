@@ -27,8 +27,8 @@ public:
 	/**
 	 * Creates image from font string
 	 */
-	bool loadFromRenderedText(SDL_Renderer* renderer, std::string &textureText,
-		SDL_Color &textColor, TTF_Font* font);
+	bool loadFromRenderedText(SDL_Renderer* renderer, std::string textureText,
+		SDL_Color &textColor, TTF_Font* font, int wrapLength);
 
 	/**
 	 * Deallocates texture
