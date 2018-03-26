@@ -58,12 +58,14 @@ void LifeUpgradeEntity::OnAnimate()
 bool LifeUpgradeEntity::OnCollision(GEntity* entity)
 {
     if(entity->name == PLAYER_NAME && lifeUsed == false) {
-        std::cout << "Got Life\n";
         lifeUsed = true;
         width *= 4;
         height *= 4;
         Y -= 40;
         AnimControl.maxFrames = 0;
+        dead = true;
+    }
+    if(entity->name == ENEMY_NAME) {
         dead = true;
     }
 

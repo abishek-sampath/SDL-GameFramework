@@ -62,8 +62,8 @@ void GMap::OnRender(int mapX, int mapY)
             int tx = mapX + (x * TILE_SIZE);
             int ty = mapY + (y * TILE_SIZE);
 
-            int tileSetX = (tileList[ID].TileID % tileSetWidth) * TILE_SIZE;
-            int tileSetY = (tileList[ID].TileID / tileSetWidth) * TILE_SIZE;
+//            int tileSetX = (tileList[ID].TileID % tileSetWidth) * TILE_SIZE;
+//            int tileSetY = (tileList[ID].TileID / tileSetWidth) * TILE_SIZE;
 
             // load current tile texture
             texture = getPropTexture(tileList[ID].TileID);

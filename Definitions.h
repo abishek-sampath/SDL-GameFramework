@@ -15,8 +15,8 @@
 
 
 // window
-#define SCREEN_WIDTH    640
-#define SCREEN_HEIGHT   450
+#define SCREEN_WIDTH    1440
+#define SCREEN_HEIGHT   810
 #define TITLE           "SDL Trials"
 
 /**
@@ -396,8 +396,8 @@ const bool IS_ANIM_2_VERT = false;
 #define NORMAL_ANIM_FILE    "./other/animations/player.anim"
 #define JUMP_ANIM_STR       "jump_anim"
 #define JUMP_ANIM_FILE      "./other/animations/jump.player.anim"
-#define P1_MAX_SPEED_X        5
-#define P1_MAX_SPEED_Y        10
+#define P1_MAX_SPEED_X        10
+#define P1_MAX_SPEED_Y        15
 #define PLAYER_HEALTH_IMG   "./images/heart.png"
 #define PLAYER_MAX_HEALTH   4
 
@@ -424,7 +424,7 @@ const bool IS_ANIM_2_VERT = false;
 #define AREA_2      "./areas/testing_mario.area"
 #define MAP_WIDTH   30
 #define MAP_HEIGHT  15
-#define TILE_SIZE   30
+#define TILE_SIZE   54
 
 
 // game start instruction

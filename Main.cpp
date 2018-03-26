@@ -44,7 +44,7 @@ void Init() {
 	}
 	//create window
 	window = SDL_CreateWindow(TITLE,
-		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_CENTERED_DISPLAY(0), SDL_WINDOWPOS_CENTERED_DISPLAY(0),
 		SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	if (window == NULL) {
 		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -72,6 +72,19 @@ void Init() {
 	if (!loadMusicMedia()) {
 		printf("Media could not be loaded! \n");
 	}
+
+	// GET SCREEN WIDTH AND HEIGHT
+//	SDL_DisplayMode DM;
+//    if(SDL_GetDesktopDisplayMode(0, &DM) == 0)
+//    {
+//        auto w = DM.w;
+//        auto h = DM.h;
+//        std::cout << "W : " << w << ", H : " << h << endl;
+//    }
+//    else
+//    {
+//        std::cout << SDL_GetError() << endl;
+//    }
 
     // Initialize resource manager
     resourceManager = ResourceManager::instance(renderer);

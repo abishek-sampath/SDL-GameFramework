@@ -32,7 +32,7 @@ bool PlayerEntity::OnLoad(const char* file, int width, int height, int textureWi
 
 void PlayerEntity::OnLoop()
 {
-    if(health < 1)
+    if(health < 1 || Y > GArea::AreaControl.GetAreaHeight())
         dead = true;
 
     if(moveLeft) {
@@ -78,7 +78,19 @@ void PlayerEntity::OnRender(bool isVertical)
 void PlayerEntity::OnRender(std::vector<SDL_Rect> &textureRects)
 {
     //render player
-    GEntity::OnRender(textureRects);
+    if(texture == NULL)
+    {
+        return;
+    }
+    if(AnimControl.GetCurrentFrame() < textureRects.size())
+    {
+        SDL_Rect textureRect = textureRects[AnimControl.GetCurrentFrame()];
+        TextureUtils::OnDraw(texture, renderer,
+                             X - GCamera::CameraControl.GetX(), Y - GCamera::CameraControl.GetY(),
+                             textureRect.w, textureRect.h,
+                             &textureRect,
+                             flip);
+    }
 
     // render health
     int healthXPos = 10;

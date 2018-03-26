@@ -96,7 +96,7 @@ void ScoreBoard::SetScoreBoard() {
                 timeText << mins << ":";
 
             if(secs < 10)
-                timeText << "0" << secs << ":";
+                timeText << "0" << secs;
             else
                 timeText << secs;
 

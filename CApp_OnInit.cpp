@@ -124,7 +124,6 @@ bool CApp::OnInit()
         if(e.type == SDL_KEYDOWN) {
             if(e.key.keysym.sym == SDLK_RETURN || e.key.keysym.sym == SDLK_RETURN2) {
                 startGame = true;
-                std::cout << "entering\n";
             }
             else if(e.key.keysym.sym == SDLK_ESCAPE) {
                 return false;

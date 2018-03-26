@@ -73,13 +73,13 @@ int CApp::OnExecute() {
         SDL_RenderPresent(renderer);
         SDL_Event e;
         // remove events during delay
+        SDL_Delay(1000);
         SDL_PumpEvents();
         SDL_FlushEvent(SDL_KEYDOWN | SDL_QUIT);
         while(SDL_WaitEvent(&e))
         {
             if (e.type == SDL_KEYDOWN || e.type == SDL_QUIT)
             {
-                std::cout << "exiting" << SDL_GetKeyName(e.key.keysym.sym) << '\n';
                 break;
             }
         }
