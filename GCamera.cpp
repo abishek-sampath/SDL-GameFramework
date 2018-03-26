@@ -32,12 +32,12 @@ int GCamera::GetX()
 
 int GCamera::GetY()
 {
-    if(targetY != NULL) {
-        if(targetMode == TARGET_MODE_CENTER) {
-            return *targetY - (SCREEN_WIDTH / 2);
-        }
-        return *targetY;
-    }
+//    if(targetY != NULL) {
+//        if(targetMode == TARGET_MODE_CENTER) {
+//            return *targetY - (SCREEN_WIDTH / 2);
+//        }
+//        return *targetY;
+//    }
     return y;
 }
 
