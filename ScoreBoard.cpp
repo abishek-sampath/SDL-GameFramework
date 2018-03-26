@@ -76,9 +76,9 @@ void ScoreBoard::SetScoreBoard() {
         int a;
         Uint32 b;
         float i=30.0f;
-        timeText.str("");
         while (ifile >> a >> b)
         {
+            timeText.str("");
             timeText << a << "    \t\t";
             //calculate time
             int secs    = (b / 1000) % 60;
