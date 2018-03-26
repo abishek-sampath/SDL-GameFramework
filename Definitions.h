@@ -145,7 +145,7 @@
 /**
  * New Game Y position
  */
-#define NG_Y	(SCREEN_HEIGHT * 0.3)
+#define NG_Y	(SCREEN_HEIGHT * 0.4)
 
 /**
  * Level select X position
@@ -260,7 +260,7 @@
 /**
  * The path to the background image
  */
-#define MENU_BG_IMAGE		"assets/menu_background.bmp"
+#define MENU_BG_IMAGE		"./images/WolvenReign.png"
 
 /**
  * Total number of levels
@@ -356,6 +356,11 @@ struct StringData
 void MenuState();
 
 /**
+ * This function holds the scoreboard state
+ */
+void ScoreBoardState();
+
+/**
  * This function holds the exit state
  */
 void ExitState();
@@ -393,6 +398,8 @@ const bool IS_ANIM_2_VERT = false;
 #define JUMP_ANIM_FILE      "./other/animations/jump.player.anim"
 #define P1_MAX_SPEED_X        5
 #define P1_MAX_SPEED_Y        10
+#define PLAYER_HEALTH_IMG   "./images/heart.png"
+#define PLAYER_MAX_HEALTH   4
 
 // bullet
 #define BULLET_NAME         "BULLET"
@@ -418,5 +425,21 @@ const bool IS_ANIM_2_VERT = false;
 #define MAP_WIDTH   30
 #define MAP_HEIGHT  15
 #define TILE_SIZE   30
+
+
+// game start instruction
+#define GAME_INST_TITLE "LOADING . . ."
+#define GAME_INST       "Use ARROW KEYS to move and jump. press LSHIFT while moving to get a speed move or jump. press X to fire bullets"
+#define START_GAME_INST "press ENTER to begin game!"
+#define GAME_END_1      "Hero! you have made "
+#define GAME_END_2      " kills in a time of "
+#define GAME_END_3      " in the Werewolf Reign. You will be remembered for your brave attempt!"
+#define GAME_END      "press any key to exit ..."
+
+// save files and scoreboard
+#define SAVE_FILE           "./savegame"
+#define SAVE_FILE_TEMP      "./temp.savegame"
+#define SCOREBOARD_TITLE    "Recent Scores :"
+#define SCOREBOARD_STATUS   "press any key to go back ..."
 
 #endif // DEFINITIONS_H_INCLUDED
