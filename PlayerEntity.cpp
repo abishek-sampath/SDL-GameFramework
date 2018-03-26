@@ -11,11 +11,16 @@ PlayerEntity::PlayerEntity(SDL_Renderer* renderer, ResourceManager* resourceMana
     maxSpeedY = P1_MAX_SPEED_Y;
 
     name = PLAYER_NAME;
+    health = PLAYER_MAX_HEALTH;
+    knockback = false;
 }
 
 
 bool PlayerEntity::OnLoad(const char* file, int width, int height, int textureWidth, int textureHeight, int maxFrames)
 {
+    //load health image
+    resourceManager->loadImg(PLAYER_HEALTH_IMG, renderer);
+
     loadFrameDimensions(NORMAL_ANIM_STR, NORMAL_ANIM_FILE);
     std::string imgFile = loadFrameDimensions(JUMP_ANIM_STR, JUMP_ANIM_FILE);
     getFrameSet(JUMP_ANIM_STR);
@@ -27,6 +32,9 @@ bool PlayerEntity::OnLoad(const char* file, int width, int height, int textureWi
 
 void PlayerEntity::OnLoop()
 {
+    if(health < 1)
+        dead = true;
+
     if(moveLeft) {
         accelX = -0.5;
     }
@@ -37,6 +45,14 @@ void PlayerEntity::OnLoop()
     GEntity::OnLoop();
     if(speedY == 0) {
         getFrameSet(NORMAL_ANIM_STR);
+    }
+    if(speedY == 0 && knockback) {
+        knockback = false;
+        speedX = 0;
+        maxSpeedX = P1_MAX_SPEED_X;
+        maxSpeedY = P1_MAX_SPEED_Y;
+        moveLeft = false;
+        moveRight = false;
     }
 }
 
@@ -61,7 +77,18 @@ void PlayerEntity::OnRender(bool isVertical)
 
 void PlayerEntity::OnRender(std::vector<SDL_Rect> &textureRects)
 {
+    //render player
     GEntity::OnRender(textureRects);
+
+    // render health
+    int healthXPos = 10;
+    int healthYPos = 10;
+    SDL_Texture* healthTexture = resourceManager->loadImg(PLAYER_HEALTH_IMG, renderer);
+    for(int i=0; i < health; i++) {
+        TextureUtils::OnDraw(healthTexture, renderer, healthXPos, healthYPos, 35, 35);
+        healthXPos += 40;
+    }
+    healthTexture = NULL;
 }
 
 
@@ -97,7 +124,26 @@ bool PlayerEntity::OnCollision(GEntity* entity)
         return false;
     }
     if(entity->name == LIFE_NAME) {
+        if(!entity->dead) {
+            health++;
+        }
         return true;
+    }
+    if(entity->name == ENEMY_NAME) {
+        if(!knockback) {
+            health--;
+            knockback = true;
+            Jump();
+            speedX = P1_MAX_SPEED_X*5;
+            //speedY = -P1_MAX_SPEED_X*2;
+            maxSpeedX = P1_MAX_SPEED_X * 10;
+            maxSpeedY = P1_MAX_SPEED_Y * 2;
+            moveLeft = entity->moveLeft;
+            moveRight = entity->moveRight;
+            if(moveLeft) {
+                speedX = -speedX;
+            }
+        }
     }
     return false;
 }

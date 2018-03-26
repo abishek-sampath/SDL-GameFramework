@@ -12,6 +12,8 @@
 #include <map>
 #include <iostream>
 
+#include "Definitions.h"
+
 /**
  * Implements the resource manager functions
  */
@@ -96,6 +98,37 @@ public:
 			return texture;
 		}
 	}
+
+
+
+    bool loadFontTexture(FontTexture &texture, std::string text, SDL_Color *color, int fontSize, int wrapLength = SCREEN_WIDTH)
+    {
+        //Loading success flag
+        bool success = true;
+
+        //Open the font
+        TTF_Font* font = TTF_OpenFont(GAME_FONT_NAME, fontSize);
+        if (font == NULL)
+        {
+            printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
+            success = false;
+        }
+        else
+        {
+            //Render text
+            //SDL_Color textColor = { 0, 0, 0 };
+            if (!texture.loadFromRenderedText(renderer, text, *color, font, wrapLength))
+            {
+                printf("Failed to render text texture!\n");
+                success = false;
+            }
+        }
+
+        TTF_CloseFont(font);
+
+        return success;
+    }
+
 
 
 	void clearResource()

@@ -5,6 +5,9 @@
 #include <iostream>
 #include <unordered_map>
 #include <random>
+#include <stdio.h>
+#include <string>
+#include <sstream>
 
 #include "GEvent.h"
 #include "GAnimation.h"
@@ -36,6 +39,9 @@ private:
     BulletEntity* bulletTemplate = NULL;
     EnemyEntity* enemyTemplate = NULL;
     LifeUpgradeEntity* lifeTemplate = NULL;
+    TTF_Font* font = NULL;
+    SDL_Color	whiteColor = { 0xff, 0xff, 0xff };
+
 
 private:
     ResourceManager* resourceManager;
@@ -49,8 +55,16 @@ private:
     std::mt19937 gen;
     std::uniform_int_distribution<> dis;
 
+private:
+    std::stringstream timeText;
+    bool generateLives;
+    int numb_lives_to_gen;
+    Uint32 beginTime;
+    int score;
+
 public:
     CApp();
+    CApp(SDL_Renderer* renderer, ResourceManager* resourceManager);
     int OnExecute();
 
 public:
@@ -64,6 +78,29 @@ public:
     void OnExit();
     void OnKeyDown(SDL_Keycode &sym, Uint16 &mod);
     void OnKeyUp(SDL_Keycode &sym, Uint16 &mod);
+
+public:
+    void GenerateLifePack(int currTime);
+
+public:
+    int GetFinalScore();
+    Uint32 GetFinalTime();
+
+// enemy spawning
+private:
+    int enemyTimeDelay = 10;
+    int enemyWaveDelay = 180;
+    // defined in init()
+    int maxDistFromPlayer = 0;
+    bool enemyGenerated = false;
+    int timeGenerated;
+    int enemiesPerWave = 8;
+    int createdEnemiesPerWaveSoFar = 0;
+// enemy spawning
+public:
+    void GenerateEnemyEntity(int currTime);
+    void GenerateWaveOfEnemies(int currTime);
+
 };
 
 #endif // CAPP_H_INCLUDED
